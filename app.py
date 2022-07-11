@@ -5,8 +5,9 @@ app = Flask(__name__)
 from pymongo import MongoClient
 import certifi
 ca = certifi.where()
-client = MongoClient('url', tlsCAFile=ca)
-db = client.dbsparta
+client = MongoClient('mongodb+srv://test:sparta@cluster0.axu42.mongodb.net/?retryWrites=true&w=majority')
+db = client.spabucks
+
 
 @app.route("/", methods=["GET"])
 def home():

@@ -1,0 +1,12 @@
+[
+  { "id": 1, "storeName": "논현역사거리", "storeAddress": "서울특별시 강남구 강남대로 538 (논현동)", "contact": "1522-3232"},
+  { "id": 2, "storeName": "압구정로", "storeAddress": "서울특별시 강남구 압구정로42길 32 (신사동)", "contact": "1522-3232"},
+  { "id": 3, "storeName": "선정릉역", "storeAddress": "서울특별시 강남구 봉은사로 407 (삼성동) 에프오빌딩", "contact": "1522-3232"},
+  { "id": 4, "storeName": "수유역", "storeAddress": "서울특별시 강북구 도봉로 342 (번동)", "contact": "1522-3232"},
+  { "id": 5, "storeName": "마곡역", "storeAddress": "서울특별시 강서구 공항대로 168 (마곡동)", "contact": "1522-3232"},
+  { "id": 6, "storeName": "낙성대역", "storeAddress": "서울특별시 관악구 남부순환로 1908 (봉천동)", "contact": "1522-3232"},
+  { "id": 7, "storeName": "신림사거리", "storeAddress": "서울특별시 관악구 남부순환로 1619 (신림동)", "contact": "1522-3232"},
+  { "id": 8, "storeName": "건국대", "storeAddress": "서울특별시 광진구 능동로 117 (화양동)", "contact": "1522-3232"},
+  { "id": 9, "storeName": "쌍문역", "storeAddress": "서울특별시 도봉구 도봉로 480 (창동)", "contact": "1522-3232"},
+  { "id": 10, "storeName": "노량진동", "storeAddress": "서울특별시 동작구 노량진로 190 (노량진동, 고려교육타워-어바니엘한강) 101호~105호", "contact": "1522-3232"}
+]
