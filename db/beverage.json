@@ -1,0 +1,37 @@
+[
+  { "id": 1, "productName": "아메리카노",
+    "temp": [{"temp": "ICE","addCost": 500}, {"temp": "HOT","addCost": 0}],
+    "size": [{"size": "TALL","addCost": 0}, {"size": "GRANDE","addCost": 500}, {"size": "VENTI","addCost": 1000}],
+    "cost": 4500, "image": "americano.jpeg"
+  },
+  { "id": 2, "productName": "카페 라떼",
+    "temp": [{"temp": "ICE","addCost": 500}, {"temp": "HOT","addCost": 0}],
+    "size": [{"size": "TALL","addCost": 0}, {"size": "GRANDE","addCost": 500}, {"size": "VENTI","addCost": 1000}],
+    "cost": 5000, "image": "cafe_latte.jpeg"
+  },
+  { "id": 3, "productName": "카페 모카",
+    "temp": [{"temp": "ICE","addCost": 500}, {"temp": "HOT","addCost": 0}],
+    "size": [{"size": "TALL","addCost": 0}, {"size": "GRANDE","addCost": 500}, {"size": "VENTI","addCost": 1000}],
+    "cost": 5500, "image": "cafe_mocha.jpeg"
+  },
+  { "id": 4, "productName": "카라멜 마끼야또",
+    "temp": [{"temp": "ICE","addCost": 500}, {"temp": "HOT","addCost": 0}],
+    "size": [{"size": "TALL","addCost": 0}, {"size": "GRANDE","addCost": 500}, {"size": "VENTI","addCost": 1000}],
+    "cost": 5900, "image": "caramel_macchiato.jpeg"
+  },
+  { "id": 5, "productName": "쿨 라임 피지오",
+    "temp": [{"temp": "ICE","addCost": 500}],
+    "size": [{"size": "TALL","addCost": 0}, {"size": "GRANDE","addCost": 500}, {"size": "VENTI","addCost": 1000}],
+    "cost": 5900, "image": "cool_lime_fizzio.jpeg"
+  },
+  { "id": 6, "productName": "제주 키위 오션 그린티",
+    "temp": [{"temp": "ICE","addCost": 500}, {"temp": "HOT","addCost": 0}],
+    "size": [{"size": "TALL","addCost": 0}, {"size": "GRANDE","addCost": 500}, {"size": "VENTI","addCost": 1000}],
+    "cost": 7200, "image": "jeju_ocean_greentea.jpeg"
+  },
+  { "id": 7, "productName": "폼폼 유스베리 티",
+    "temp": [{"temp": "ICE","addCost": 500}],
+    "size": [{"size": "TALL","addCost": 0}, {"size": "GRANDE","addCost": 500}, {"size": "VENTI","addCost": 1000}],
+    "cost": 7500, "image": "foam_foam_youthberry_tea.jpeg"
+  }
+]
