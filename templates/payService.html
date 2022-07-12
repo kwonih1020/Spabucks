@@ -39,6 +39,7 @@
             crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="../static/main.css"/>
+    <link rel="stylesheet" href="../static/payService.css"/>
 
     <!--GSAP & ScrollToPlugin-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"
@@ -73,17 +74,14 @@
 
 <!--VISUAL-->
 <section class="visual" style="test-align:center;">
-<h1> 결제하기 </h1>
+<h2> 결제하기 </h2>
     <hr>
-    <div>{{ place }}</div>
-    <div>{{ order }}</div>
-    <div>{{ productName }}</div>
-<ul class="list-group">
-  <li class="list-group-item active"><div></div></li>
-  <li class="list-group-item">Dapibus ac facilisis in</li>
-  <li class="list-group-item">Morbi leo risus</li>
-  <li class="list-group-item">Porta ac consectetur ac</li>
-  <li class="list-group-item">Vestibulum at eros</li>
+
+<ul class="list-group" id="pay-list-ul">
+  <li class="list-group-item list-group-item-dark pay-list"><div>{{ orders.place }} 지점</div></li>
+    {% for order in orders.order %}
+     <li class="list-group-item pay-list" style="background-image:url("../static/images/");">{{ order }}</li>
+    {% endfor %}
 </ul>
 </section>
 
