@@ -23,13 +23,9 @@ function showList() {
 
     for (let i = 0; i < html.length; i++) {
         let element = html[i];
-        let temp_html = `<tr>
+        let temp_html = `<tr class="container">
                             <td>${element[0]}</td>
-                            <td>
-                                <div class="d-flex align-content-center">
-                                    ${element[1]}
-                                </div>
-                            </td>
+                            <td>${element[1]}</td>
                         </tr>`
         $('#menuList').append(temp_html);
     }
@@ -51,12 +47,12 @@ function getPlace() {
                 let placeImage = 'static/images/place_image.jpeg'
 
                 let temp_html = `<div class="card mb-3">
-                                    <div class="row g-0">
+                                    <div class="row">
                                         <div class="col-md-4">
                                             <img src=${placeImage} class="img-fluid rounded-start" alt="...">
                                         </div>
                                         <div class="col-md-8">
-                                            <div class="card-body">
+                                            <div class="card-body place-info">
                                                 <h5 class="card-title">${placeName}</h5>
                                                 <p class="card-text">${placeAddress}</p>
                                             </div>
@@ -85,18 +81,19 @@ function getMenu() {
                 let menuCost = element['cost']
 
                 let temp_html = `<div class="card mb-3"">
-                                    <div class="row g-0">
-                                            <input class="form-check-input mt-0" type="checkbox" value='${JSON.stringify(element)}' aria-label="Checkbox for following text input" name="menuCheckbox">
-                                        <div class="col-md-4">
+                                    <div class="row">
+                                        <input class="form-check-input mt-0 menu-checkbox" type="checkbox" value='${JSON.stringify(element)}' aria-label="Checkbox for following text input" name="menuCheckbox">
+                                        <div class="col-md-4 menu-image">
                                             <img src="${menuImage}" class="img-fluid rounded-start" alt="...">
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-md-8 menu-card">
                                             <div class="card-body">
                                                 <h5 class="card-title">${menuName}</h5>
                                                 <p class="card-text">${menuCost}</p>
+                                                <input type="number" id="quantity" name="count" min="0" max="100">
                                             </div>
                                         </div>
-                                        <input type="number" id="quantity" name="count" min="0" max="100">
+                                        
                                     </div>
                                 </div>`
                 menuHtml.push(temp_html)
@@ -108,27 +105,27 @@ function getMenu() {
 
 function orderComplete() {
     let place
-    $(‘input:radio[name=“placeCheckbox”]’).each(function () {
+    $('input:radio[name="placeCheckbox"]').each(function () {
         if(this.checked){
             place=JSON.parse(this.value)
         }
       })
     let orders = []
-    $(‘input:checkbox[name=“menuCheckbox”]’).each(function () {
+    $('input:checkbox[name="menuCheckbox"]').each(function () {
         if(this.checked){
             let data = JSON.parse(this.value)
-            let count = parseInt(document.getElementById(data[‘productName’]).value)
+            let count = parseInt(document.getElementById(data['productName']).value)
             if (count!=0){
-                data[‘count’] = count
-                data[‘cost’] = data[‘count’]*data[‘cost’]
-                data[‘size’] = ‘tall’
-                data[‘temp’] = ‘ice’
+                data['count'] = count
+                data['cost'] = data['count']*data['cost']
+                data['size'] = 'tall'
+                data['temp'] = 'ice'
                 orders.push(data)
             }
         }
       })
-    let result = {“place”:place, “order”:orders}
+    let result = {"place":place, "order":orders}
     console.log(result)
-    localStorage.setItem(“orders”,JSON.stringify(result))
-    // location.href = ‘/pay’
+    localStorage.setItem("orders",JSON.stringify(result))
+    // location.href = '/pay'
 }
