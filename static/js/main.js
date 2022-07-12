@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+/**
+ * 오른쪽 하단 화살표 누르면 위에 가기
+ */
+const order= document.getElementById("order");
+order.addEventListener("click", ()=>{
+    window.location.href="/order";
+});
+=======
 $(document).ready(function () {
     /**
      * 오른쪽 하단 화살표 누르면 위에 가기
@@ -9,6 +18,7 @@ $(document).ready(function () {
             scrollTo: 0,
         });
     });
+>>>>>>> 61b36b66160a737781adba315c934e8fcce2fe14
 
     /**
      * 배너에 사진들 순서대로 나타나는 기능
@@ -33,5 +43,13 @@ $(document).ready(function () {
 });
 
 
+<<<<<<< HEAD
+/**
+ * 올해가 몇 년도인지 계산
+ */
+ const thisYear = document.querySelector(".this-year");
+ thisYear.textContent = new Date().getFullYear();
+=======
 
+>>>>>>> 61b36b66160a737781adba315c934e8fcce2fe14
 
