@@ -20,7 +20,7 @@
     <meta property="twitter:site" content="Spabucks"/>
     <meta property="twitter:title" content="Sparta Spabucks Korea"/>
     <meta property="twitter:description"
-          content="스파벅스는 스파르타코딩에서 가장 인기 있는 커피 전문검으로, 여러가지 커피 종류를 주문하고 받을수 있도록 운영하고 있습니다."/>
+          content="스파벅스는 스파르타코딩에서 가장 인기 있는 커피 전문점으로, 여러가지 커피 종류를 주문하고 받을수 있도록 운영하고 있습니다."/>
     <meta property="twitter:image" content="../static/mainPage/og_image.jpeg"/>
     <meta property="twitter:url" content=""/>
 
@@ -99,7 +99,7 @@
                     <input type="text" placeholder="아이디를 입력하세요."/>
                     <input type="password" placeholder="비밀번호를 입력하세요."/>
                     <input type="submit" value="로그인"/>
-                    <input type="button" value="회원가입"/>
+                    <input id="register" type="button" value="회원가입"/>
                     <p>
                         * 비밀번호를 타 사이트와 같이 사용할 경우 도용 위험이 있으니,<br/>
                         정기적으로 비밀번호를 변경하세요!
@@ -107,6 +107,33 @@
                 </form>
         </div>
     </div>
+    <div class="signin" id="membership-popup">
+
+        <div class="signin__card">
+            <!-- <h1>회원가입</h1> -->
+            <button type="button" class="close-button top-right" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+                <h2>
+                    <strong>Welcome!</strong> 스파벅스에 오신 것을 환영합니다.
+                </h2>
+                <form action="/">
+                    <div id="id_input_box">
+                        <input type="text" placeholder="아이디를 입력하세요."/>
+                        <p id="help-id" class="help is-hidden">아이디는 2-10자의 영문과 숫자와 일부 특수문자(._-)만 입력 가능합니다.</p>
+                        <p id="help-id-login" class="help is-danger"></p>
+                        <input type="submit" value="중복확인"/>
+                    </div>
+                    <input type="password" placeholder="비밀번호를 입력하세요."/>
+                    <input type="password" placeholder="비밀번호 재입력"/>
+                    <p id="help-password2" class="help is-hidden">비밀번호를 다시 한 번 입력해주세요.</p>
+                    </nav>
+                    <hr>
+                    <p id="help-password2" class="help is-hidden">아직 회원이 아니라면</p>
+                    <input type="button" value="회원가입"/>
+                </form>
+        </div>
+    </div>
+
 </section>
 
 <!--FOOTER-->
@@ -135,6 +162,7 @@
 
 <script src="../static/js/main.js"></script>
 <script src="../static/js/login.js"></script>
+<script src="../static/js/membership.js"></script>
 
 </body>
 </html>
