@@ -51,7 +51,7 @@ img {
 /*HEADER*/
 header {
   width: 100%;
-  position: fixed;
+  position: relative;
   top: 0;
   z-index: 9;
   background-color: #f6f5f0;
@@ -97,7 +97,6 @@ header .main-menu .item .item__contents {
 
 /*VISUAL*/
 .visual {
-  margin-top: 98px;
   background-image: url("./images/main_pages/visual_bg.jpg");
   background-position: center;
 }
