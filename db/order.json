@@ -1,0 +1,9 @@
+[
+  { "id": 1, "ordersId": "베이글", "product": 4000, "temp": "bagel.jpeg", "product": 4000, "temp": "bagel.jpeg"},
+  { "id": 2, "productName": "티라미수 케이크", "cost": 5500, "image": "tiramisu_cake.jpeg"},
+  { "id": 3, "productName": "블루베리 케이크", "cost": 5500, "image": "blueberry_cake.jpeg"},
+  { "id": 4, "productName": "티라미수 롤", "cost": 5000, "image": "tiramisu_roll.jpeg"},
+  { "id": 5, "productName": "바게트 샌드위치", "cost": 6500, "image": "baguette_sandwich.jpeg"},
+  { "id": 6, "productName": "딸기 마카롱", "cost": 3000, "image": "strawberry_macaron.jpeg"},
+  { "id": 7, "productName": "아포가토", "cost": 5000, "image": "affogato.jpeg"}
+]

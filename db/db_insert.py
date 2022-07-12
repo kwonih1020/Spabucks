@@ -26,8 +26,8 @@ with open('beverage.json') as beverage:
 with open('food.json') as food:
     food_data = json.load(food)
 
-collection_places.insert_many(places_temp)
-collection_beverage.insert_many(places_sizes)
+collection_temp.insert_many(places_temp)
+collection_size.insert_many(places_sizes)
 collection_places.insert_many(places_data)
 collection_beverage.insert_many(beverage_data)
 collection_food.insert_many(food_data)
