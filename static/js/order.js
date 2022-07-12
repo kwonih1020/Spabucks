@@ -24,7 +24,7 @@ function showList() {
     for (let i = 0; i < html.length; i++) {
         let element = html[i];
         let temp_html = `<tr class="container">
-                            <td>${element[0]}</td>
+                            <td class="place-table">${element[0]}</td>
                             <td>${element[1]}</td>
                         </tr>`
         $('#menuList').append(temp_html);
