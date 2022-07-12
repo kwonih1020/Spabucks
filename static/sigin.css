@@ -1,0 +1,74 @@
+.signin {
+    padding: 100px 0 150px;
+    display: none;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 105px;
+    text-align: center;
+}
+
+/*.signin h1 {*/
+/*  color: black;*/
+/*  font-size: 30px;*/
+/*  font-weight: 700;*/
+/*  text-align: center;*/
+/*  padding: 30px;*/
+/*}*/
+.signin__card {
+    width: 500px;
+    margin: 0 auto;
+    border-radius: 6px;
+    background-color: #F6F5F0;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, .3);
+    color: #555;
+}
+
+.signin__card h2 {
+    padding: 30px;
+    font-size: 18px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.signin__card h2 strong {
+    font-weight: 700;
+    color: #da2c45;
+}
+
+.signin__card form {
+    padding: 30px 22px;
+}
+
+.signin__card form input {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.signin__card form [type="submit"] {
+    background-color: #da2c45;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.signin__card form [type="button"] {
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.signin__card p {
+    font-size: 12px;
+    color: #006633;
+    text-align: center;
+}
