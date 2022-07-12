@@ -5,12 +5,17 @@ from pymongo import MongoClient
 import certifi
 import hashlib
 import json
+<<<<<<< HEAD
 
 app = Flask(__name__)
 
 ca = certifi.where()
 SECRET_KEY = 'SPARTA'  # 숨겨 주세요.
 client = MongoClient('mongodb+srv://junior_koo:test@cluster0.ty9x0.mongodb.net/?retryWrites=true&w=majority')
+
+app = Flask(__name__)
+ca = certifi.where()
+client = MongoClient('mongodb+srv://test:sparta@cluster0.axu42.mongodb.net/?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.spabucks
 
 
@@ -86,21 +91,15 @@ def pay():
     return render_template('payService.html', orders=orderList)
 
 
-@app.route("/", methods=["POST"])
-def bucket_done():
-    sample_receive = request.form['sample_give']
-    print(sample_receive)
-
-    return jsonify({'msg': 'POST'})
-
-
 @app.route("/menu", methods=["GET"])
 def getMenu():
     beverages = tuple(db.beverages.find({},{'_id':False}))
     foods = tuple(db.foods.find({},{'_id':False}))
     for b in beverages:
-        b['image'] = f'/static/images/beverage/{b["image"]}'
+        b["kind"] = 'beverages'
+        b['image'] = f'/static/images/food/{b["image"]}'
     for f in foods:
+        f['kind'] = 'foods'
         f['image'] = f'/static/images/food/{f["image"]}'
     menus = beverages+foods
     return {'menus':menus}

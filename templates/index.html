@@ -190,7 +190,7 @@
         </a>
         <ul class="main-menu">
             <li class="item">
-                <a href="/order"><div class="item__name" id="order">주문하기</div></a>
+                <div class="item__name" id="order" onclick="window.location.href = '/order';">주문하기</div>
             </li>
             <li class="item">
                 <div class="item__name" id="log_in">로그인</div>
@@ -227,10 +227,15 @@
                 <form action="/">
                     <input type="text" placeholder="아이디를 입력하세요."/>
                     <input type="password" placeholder="비밀번호를 입력하세요."/>
+<<<<<<< HEAD
                     <button class="level-item button is-sparta" onclick="sign_in()">
                         로그인
                     </button>
                     <input id="register" type="button" value="회원가입"/>
+=======
+                    <input type="submit" value="로그인"/>
+                    <!-- <input id="register" type="button" value="회원가입"/> -->
+>>>>>>> 5d4c5bc0aa24d80df65f4448368e62f4f052701b
                     <p>
                         * 비밀번호를 타 사이트와 같이 사용할 경우 도용 위험이 있으니,<br/>
                         정기적으로 비밀번호를 변경하세요!
@@ -244,6 +249,7 @@
             <!-- <h1>회원가입</h1> -->
             <button type="button" class="close-button top-right" data-dismiss="modal" aria-label="Close"><span
                     aria-hidden="true">&times;</span></button>
+<<<<<<< HEAD
             <h2>
                 <strong>Welcome!</strong> 스파벅스에 오신 것을 환영합니다.
             </h2>
@@ -270,6 +276,26 @@
             <p id="help-password2" class="help is-hidden">아직 회원이 아니라면</p>
             <button onclick="sign_up()">회원가입</button>
             {#                </form>#}
+=======
+                <h2>
+                    <strong>Welcome!</strong> 스파벅스에 오신 것을 환영합니다.
+                </h2>
+                <form action="/">
+                    <div id="id_input_box">
+                        <input type="text" placeholder="아이디를 입력하세요."/>
+                        <p id="help-id" class="help is-hidden">아이디는 2-10자의 영문과 숫자와 일부 특수문자(._-)만 입력 가능합니다.</p>
+                        <p id="help-id-login" class="help is-danger"></p>
+                        <input id="id_check" type="submit" value="중복확인"/>
+                    </div>
+                    <input type="password" placeholder="비밀번호를 입력하세요."/>
+                    <input type="password" placeholder="비밀번호 재입력"/>
+                    <p id="help-password2" class="help is-hidden">비밀번호를 다시 한 번 입력해주세요.</p>
+                    </nav>
+                    <hr>
+                    <!-- <p id="help-password2" class="help is-hidden">아직 회원이 아니라면</p> -->
+                    <input type="button" value="회원가입"/>
+                </form>
+>>>>>>> 5d4c5bc0aa24d80df65f4448368e62f4f052701b
         </div>
     </div>
 
@@ -299,9 +325,9 @@
     <div class="material-icons">arrow_upward</div>
 </div>
 
-<script src="../static/js/main.js"></script>
-<script src="../static/js/login.js"></script>
-<script src="../static/js/membership.js"></script>
+<script defer src="../static/js/main.js"></script>
+<script defer src="../static/js/login.js"></script>
+<script defer src="../static/js/membership.js"></script>
 
 </body>
 </html>
