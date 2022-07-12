@@ -8,8 +8,5 @@ $(document).ready(function () {
         $('#membership-popup').fadeOut(500);
     });
 
-    $('#id_check').on('click', function () {
-        $('#membership-popup').fadeIn(500);
-    });
-
 });
+

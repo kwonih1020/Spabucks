@@ -3,10 +3,14 @@ from datetime import datetime
 from flask import Flask, render_template, request, jsonify
 from pymongo import MongoClient
 import certifi
+import hashlib
 import json
-app = Flask(__name__)
-ca = certifi.where()
 
+app = Flask(__name__)
+
+ca = certifi.where()
+SECRET_KEY = 'SPARTA'  # 숨겨 주세요.
+client = MongoClient('mongodb+srv://junior_koo:test@cluster0.ty9x0.mongodb.net/?retryWrites=true&w=majority')
 db = client.spabucks
 
 
@@ -15,9 +19,47 @@ def home():
     return render_template('index.html')
 
 
+@app.route('/sign_up/check_id', methods=['POST'])
+def check_id():
+    username_receive = request.form['username_give']
+    exists = bool(db.users.find_one({"username": username_receive}))
+    return jsonify({'result': 'success', 'exists': exists})
+
+
+@app.route('/sign_up/check_nickname', methods=['POST'])
+def check_nickname():
+    nickname_receive = request.form['nickname_give']
+    exists = bool(db.users.find_one({"nickname": nickname_receive}))
+    return jsonify({'result': 'success', 'exists': exists})
+
+
+@app.route('/sign_up/save', methods=['POST'])
+def sign_up():
+    username_receive = request.form['username_give']
+    password_receive = request.form['password_give']
+    nickname_receive = request.form['nickname_give']
+
+    password_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
+    doc = {
+        "username": username_receive,  # 아이디
+        "password": password_hash,  # 비밀번호
+        "nickname": nickname_receive,  # 닉네임
+    }
+    db.users.insert_one(doc)
+    return jsonify({'result': 'success'})
+
+
 @app.route("/order", methods=["GET"])
 def order():
-    return render_template('orderService.html')
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+
+        return render_template('orderService.html')
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
 
 @app.route("/pay", methods=["GET"])
