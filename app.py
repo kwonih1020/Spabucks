@@ -1,20 +1,25 @@
+from datetime import datetime
+
 from flask import Flask, render_template, request, jsonify
-app = Flask(__name__)
 from pymongo import MongoClient
 import certifi
+app = Flask(__name__)
 ca = certifi.where()
-client = MongoClient('url', tlsCAFile=ca)
-db = client.dbsparta
+client = MongoClient('mongodb+srv://test:sparta@cluster0.axu42.mongodb.net/?retryWrites=true&w=majority')
+db = client.spabucks
 
-@app.route('/')
+
+@app.route("/", methods=["GET"])
 def home():
-   return render_template('index.html')
+    return render_template('index.html')
 
-@app.route("/", methods=["POST"])
-def _post():
-    sample_receive = request.form['sample_give']
-    print(sample_receive)
-    return jsonify({'msg': 'Post'})
+@app.route("/order", methods=["GET"])
+def order():
+    return render_template('orderService.html')
+
+@app.route("/pay", methods=["GET"])
+def pay():
+    return render_template('payService.html')
 
 @app.route("/", methods=["POST"])
 def bucket_done():
@@ -23,9 +28,5 @@ def bucket_done():
 
     return jsonify({'msg': 'POST'})
 
-@app.route("/", methods=["GET"])
-def bucket_get():
-    return jsonify({'sample': sample_list})
-
 if __name__ == '__main__':
-   app.run('0.0.0.0', port=5000, debug=True)
+    app.run('0.0.0.0', port=5000, debug=True)
