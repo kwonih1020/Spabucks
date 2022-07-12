@@ -98,7 +98,7 @@ header .main-menu .item .item__contents {
 /*VISUAL*/
 .visual {
   margin-top: 98px;
-  background-image: url("../images/visual_bg.jpg");
+  background-image: url("../images/main_pages/visual_bg.jpg");
   background-position: center;
 }
 .visual .inner {
