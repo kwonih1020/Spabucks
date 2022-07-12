@@ -6,7 +6,7 @@ import certifi
 import json
 app = Flask(__name__)
 ca = certifi.where()
-client = MongoClient('mongodb+srv://test:sparta@cluster0.axu42.mongodb.net/?retryWrites=true&w=majority')
+client = MongoClient('mongodb+srv://test:sparta@cluster0.axu42.mongodb.net/?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.spabucks
 
 
