@@ -1,6 +1,10 @@
 /**
  * 오른쪽 하단 화살표 누르면 위에 가기
  */
+const order= document.getElementById("order");
+order.addEventListener("click", ()=>{
+    window.location.href="/order";
+});
 
 const toTopEl = document.querySelector("#to-top");
 
@@ -30,3 +34,4 @@ fadeEls.forEach(function (fadeEl, index) {
  */
  const thisYear = document.querySelector(".this-year");
  thisYear.textContent = new Date().getFullYear();
+

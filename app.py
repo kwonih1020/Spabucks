@@ -13,11 +13,13 @@ db = client.spabucks
 def home():
     return render_template('index.html')
 
-@app.route("/", methods=["POST"])
-def _post():
-    sample_receive = request.form['sample_give']
-    print(sample_receive)
-    return jsonify({'msg': 'Post'})
+@app.route("/order", methods=["GET"])
+def order():
+    return render_template('orderService.html')
+
+@app.route("/pay", methods=["GET"])
+def pay():
+    return render_template('payService.html')
 
 @app.route("/", methods=["POST"])
 def bucket_done():
