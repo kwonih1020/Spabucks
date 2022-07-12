@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="Spabucks"/>
     <meta property="og:title" content="Sparta Spabucks Korea"/>
     <meta property="og:description" content="스파벅스는 스파르타코딩에서 가장 인기 있는 커피 전문검으로, 여러가지 커피 종류를 주문하고 받을수 있도록 운영하고 있습니다."/>
-    <meta property="og:image" content="../static/og_image.jpeg"/>
+    <meta property="og:image" content="../static/mainPage/og_image.jpeg"/>
     <meta property="og:url" content=""/>
 
     <!--Twitter Card-->
@@ -21,7 +21,7 @@
     <meta property="twitter:title" content="Sparta Spabucks Korea"/>
     <meta property="twitter:description"
           content="스파벅스는 스파르타코딩에서 가장 인기 있는 커피 전문검으로, 여러가지 커피 종류를 주문하고 받을수 있도록 운영하고 있습니다."/>
-    <meta property="twitter:image" content="../static/og_image.png"/>
+    <meta property="twitter:image" content="../static/mainPage/og_image.jpeg"/>
     <meta property="twitter:url" content=""/>
 
     <link rel="icon" href="/static/images/main_pages/favicon.png"/>
@@ -55,7 +55,7 @@
 <header>
     <div class="inner">
         <a href="/" class="logo">
-            <img class="logo_img" src="static/images/main_pages/logo_1.png" alt="SPABUCKS"/>
+            <img class="logo_img" src="../static/images/main_pages/logo_1.png" alt="SPABUCKS"/>
         </a>
         <ul class="main-menu">
             <li class="item">
@@ -69,12 +69,63 @@
             </li>
         </ul>
     </div>
+    <script src="../static/js/order.js"></script>
 </header>
 
 <!--VISUAL-->
-<section class="visual" style="test-align:center;">
-<h1> 주문하는사이트이올시다. </h1>
-<a href="/pay" class="btn btn-secondary" style="margin:auto;">결제하기</a>
+
+<section class="visual">
+    <h1>주문하기</h1>
+    <div class="row justify-content-center">
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th scope="col">지점</th>
+            <th scope="col">메뉴</th>
+          </tr>
+        </thead>
+        <tbody id="menuList">
+          <tr>
+            <td>
+              <div class="card mb-3" style="max-width: 300px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="..." class="img-fluid rounded-start" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">placeName</h5>
+                      <p class="card-text">placeAddress</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex align-content">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" style="margin-top: auto;margin-bottom: auto;width: 30px;height: 30px;color: red;">
+              <div class="card mb-3" style="max-width: 300px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="..." class="img-fluid rounded-start" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">placeName</h5>
+                      <p class="card-text">placeAddress</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row justify-content-center">
+      <button style="width:100px">주문완료</button>
+    </div>
 </section>
 
 <!--FOOTER-->
@@ -82,8 +133,8 @@
     <div class="inner">
 
         <div class="btn-group">
-            <a href="javascript:void(0)" class="btn btn--white">찾아오시는 길</a>
-            <a href="#" class="btn btn--white">주문하기</a>
+            <a href="https://map.kakao.com/?map_type=TYPE_MAP&target=car&rt=,,509825,1111908&rt1=&rt2=%ED%8C%80%EC%8A%A4%ED%8C%8C%EB%A5%B4%ED%83%80&rtIds=,1429099039" target="_blank" class="btn btn--white">찾아오시는 길</a>
+            <a href="javascript:void(0)" class="btn btn--white">주문하기</a>
             <a href="javascript:void(0)" class="btn btn--white">주문내역</a>
         </div>
 
@@ -103,5 +154,5 @@
     <div class="material-icons">arrow_upward</div>
 </div>
 </body>
-<script defer src="../static/js/main.js"></script>
+<script src="../static/js/main.js"></script>
 </html>

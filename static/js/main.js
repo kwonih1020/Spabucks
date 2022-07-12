@@ -1,3 +1,4 @@
+
 /**
  * 오른쪽 하단 화살표 누르면 위에 가기
  */
@@ -40,6 +41,7 @@ $(document).ready(function () {
     $('.this-year').text(year);
 });
 
+<<<<<<< HEAD
 
 /**
  * 올해가 몇 년도인지 계산
@@ -47,3 +49,5 @@ $(document).ready(function () {
  const thisYear = document.querySelector(".this-year");
  thisYear.textContent = new Date().getFullYear();
 
+=======
+>>>>>>> 1364ef664f06af58f5d3a5622810ae4d3c4c3e71
