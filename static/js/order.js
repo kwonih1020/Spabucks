@@ -60,7 +60,6 @@ function getPlace() {
                                                 <h5 class="card-title">${placeName}</h5>
                                                 <p class="card-text">${placeAddress}</p>
                                             </div>
-                                        </div>
                                     </div>
                                 </div>`
                 placeHtml.push(temp_html)
@@ -108,13 +107,28 @@ function getMenu() {
 }
 
 function orderComplete() {
-    let orders = []
-    $('input:checkbox[name="menuCheckbox"]').each(function () {
-        if (this.checked) {
-            console.log(this.value)
-            orders.push(JSON.parse(this.value,))
+    let place
+    $(‘input:radio[name=“placeCheckbox”]’).each(function () {
+        if(this.checked){
+            place=JSON.parse(this.value)
         }
-    })
-    console.log(orders)
-    // location.href = '/pay'
+      })
+    let orders = []
+    $(‘input:checkbox[name=“menuCheckbox”]’).each(function () {
+        if(this.checked){
+            let data = JSON.parse(this.value)
+            let count = parseInt(document.getElementById(data[‘productName’]).value)
+            if (count!=0){
+                data[‘count’] = count
+                data[‘cost’] = data[‘count’]*data[‘cost’]
+                data[‘size’] = ‘tall’
+                data[‘temp’] = ‘ice’
+                orders.push(data)
+            }
+        }
+      })
+    let result = {“place”:place, “order”:orders}
+    console.log(result)
+    localStorage.setItem(“orders”,JSON.stringify(result))
+    // location.href = ‘/pay’
 }
