@@ -44,14 +44,6 @@ def pay():
     return render_template('payService.html', orders=orderList)
 
 
-@app.route("/", methods=["POST"])
-def bucket_done():
-    sample_receive = request.form['sample_give']
-    print(sample_receive)
-
-    return jsonify({'msg': 'POST'})
-
-
 @app.route("/menu", methods=["GET"])
 def getMenu():
     beverages = tuple(db.beverages.find({},{'_id':False}))
