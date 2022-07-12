@@ -6,7 +6,7 @@ import certifi
 import json
 app = Flask(__name__)
 ca = certifi.where()
-client = MongoClient('mongodb+srv://test:sparta@cluster0.axu42.mongodb.net/?retryWrites=true&w=majority')
+
 db = client.spabucks
 
 
@@ -14,9 +14,11 @@ db = client.spabucks
 def home():
     return render_template('index.html')
 
+
 @app.route("/order", methods=["GET"])
 def order():
     return render_template('orderService.html')
+
 
 @app.route("/pay", methods=["GET"])
 def pay():
@@ -41,12 +43,14 @@ def pay():
 
     return render_template('payService.html', orders=orderList)
 
+
 @app.route("/", methods=["POST"])
 def bucket_done():
     sample_receive = request.form['sample_give']
     print(sample_receive)
 
     return jsonify({'msg': 'POST'})
+
 
 @app.route("/menu", methods=["GET"])
 def getMenu():
@@ -64,6 +68,7 @@ def getMenu():
 def getPlace():
     places = tuple(db.places.find({},{'_id':False}))
     return {'places':places}
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

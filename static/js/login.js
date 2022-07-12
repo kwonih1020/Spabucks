@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     $('#log_in').on('click', function () {
         $('#sign-popup').fadeIn(500);
     });
@@ -6,4 +7,9 @@ $(document).ready(function () {
     $('.close-button').on('click', function () {
         $('#sign-popup').fadeOut(500);
     });
+
+    $('#register').on('click', function () {
+        $('#membership-popup').fadeIn(500);
+    });
+
 });
