@@ -39,6 +39,7 @@
             crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="../static/main.css"/>
+    <link rel="stylesheet" href="../static/orderListService.css"/>
 
     <!--GSAP & ScrollToPlugin-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"
@@ -69,32 +70,27 @@
             </li>
         </ul>
     </div>
-    <script src="../static/js/order.js"></script>
 </header>
 
 <!--VISUAL-->
 
-<section class="visual">
-    <div class="inner order-inner">
-        <h1>주문하기</h1>
-        <div class="row justify-content-center">
-            <div style="width:100%; height:500px; overflow:auto">
-                <table class="table align-middle">
-                    <thead>
-                        <tr>
-                            <th scope="col">지점</th>
-                            <th scope="col">메뉴</th>
-                        </tr>
-                    </thead>
-                    <tbody id="menuList">
-                    </tbody>
-            </div>
-            </table>
-        </div>
-        <div class="row justify-content-center">
-            <button style="width:100px" onclick="orderComplete()">주문완료</button>
-        </div>
-    </div>
+<section class="visual" style="background-image: none">
+    <div id="orderListService">
+<h2> 주문내역 </h2>
+    <hr>
+<table class="table table-striped">
+  <tbody>
+   {% for item in data %}
+       <tr>
+        <th scope="row"><div class="menu-img" style="background-image:url('../static/images/food/americano.jpeg');">주문완료</div></th>
+        <td><p>{{ item.order[0].productName }} 외</p>
+            <p>{{ item.createDate }}  {{ item.place }} {{ item.totalCost }}원</p></td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<hr>
+</div>
 </section>
 
 <!--FOOTER-->

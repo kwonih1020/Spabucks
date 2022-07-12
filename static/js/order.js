@@ -159,11 +159,11 @@ function getMenu() {
                                         <input class="form-check-input mt-0 menu-checkbox" type="checkbox" value='${JSON.stringify(element)}' aria-label="Checkbox for following text input" name="menuCheckbox">
                                         <div class="col-md-4 menu-image">
                                             <img src="${menuImage}" class="img-fluid rounded-start" alt="...">
+                                            <p class="card-title">${menuName}</p>
+                                            <p class="card-text">${menuCost}</p>
                                         </div>
                                         <div class="col-md-8 menu-card">
                                             <div class="card-body">
-                                                <h5 class="card-title">${menuName}</h5>
-                                                <p class="card-text">${menuCost}</p>
                                                 ${option_html}
                                                 <input type="number" id="${menuName}" name="count" min="0" max="100" value="0">
                                             </div>

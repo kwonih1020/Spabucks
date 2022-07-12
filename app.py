@@ -1,6 +1,7 @@
+import json
 from datetime import datetime
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, make_response
 from pymongo import MongoClient
 import certifi
 import json
@@ -19,11 +20,35 @@ def home():
 def order():
     return render_template('orderService.html')
 
+@app.route("/pay", methods=["POST"])
+def pay_complete():
+    receive = request.get_json()
+    data = receive['data']
+    place = receive['data']['place']
+    orders = receive['data']['order']
+    count = db.orders.count_documents({})
+    idx = count+1
+    date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    collection_orders= {"place":place['storeName'], 'id':idx, 'userId':1, 'createDate':date, 'totalCost': receive['all_cost']}
+    collection_order= list()
+    for i in orders:
+        order= {'productName': i['productName'], 'ordersId':idx, 'temp': i['temp'], 'size': i['size'], 'cost': i['cost'], 'count': i['count']}
+        collection_order.append(order)
+        # db.order.insert_many(data)
+    collection_orders['order']=collection_order
+    print(data)
+    print(collection_orders)
+    print(collection_order)
+    db.orders.insert_one(collection_orders)
+    db.order.insert_many(collection_order)
+    return jsonify({'msg': '주문이 완료되었습니다.'})
+
 
 @app.route("/pay", methods=["GET"])
 def pay():
-    orderList = {"place":"건국대","order":[{"productName":"아메리카노","temp":"ICE","size":"tall","cost":10000, "count":2, "image":"americano"},
-                                         {"productName":"쿨 라임 피지오","temp":"ICE","size":"venti","cost":11000, "count":2, "image":"cafe_latte"}]}
+    orderList = {"place": {"contact":"1522-3232", "id":2, "storeAddress":"서울시강남구", "storeName":"압구정로"},
+                "order": [{"productName":"아메리카노","temp":"ICE","size":"tall","cost":10000, "count":2, "image":"americano"},
+                         {"productName":"쿨 라임 피지오","temp":"ICE","size":"venti","cost":11000, "count":2, "image":"cafe_latte"}]}
     # len = len(orderList)
     # store=request value
     # place = db.places.find_one({"storeName": "건국대"})
@@ -40,8 +65,21 @@ def pay():
     # temp=db.beverages.find_one({"productName":"쿨 라임 피지오","temp":{"$elemMatch":{"temp":"ICE"}}})
     # order2 = {"productName":order.productName, "temp":"ICE", "size": "TALL", "cost":order.cost}
     # ordersId = request.form['ordersId']
+    all_cost = 0
+    for i in orderList["order"]:
+        all_cost += i["cost"]
 
-    return render_template('payService.html', orders=orderList)
+    # resp = make_response(render_template('payService.html', orders=orderList, all_cost=all_cost))
+    # resp.set_cookie("place", "건국대")
+    data = { "a" : "b", "c":[{"d":"e"}]}
+    return render_template('payService.html', data=json.dumps(orderList, ensure_ascii=False), orders=orderList, all_cost=all_cost)
+    # return resp
+
+@app.route("/order_list", methods=["GET"])
+def get_cookie():
+    order = list(db.orders.find({}, {'_id': False}).sort("_id", -1))
+    # return jsonify({'replys': replys})
+    return render_template('orderList.html', data=order)
 
 
 @app.route("/menu", methods=["GET"])
