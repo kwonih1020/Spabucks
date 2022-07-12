@@ -7,9 +7,6 @@ function showList() {
     let menuHtml = getMenu()
     maxRows = Math.max(placeHtml.length, menuHtml.length)
 
-    console.log(placeHtml.length)
-    console.log(menuHtml.length)
-    console.log(maxRows)
     let html = []
     for (let i = 0; i < maxRows; i++) {
         let place = placeHtml[i]
@@ -24,7 +21,6 @@ function showList() {
         html.push([place, menu])
         
     }
-    console.log(html.length)
 
     for (let i = 0; i < html.length; i++) {
         let element = html[i];
@@ -52,7 +48,6 @@ function getPlace() {
             let element
             for (let i = 0; i < response['places'].length; i++) {
                 element = response['places'][i];
-                // console.log(element)
                 let placeName = element['storeName']
                 let placeAddress = element['storeAddress']
                 let placeImage = 'static/images/place_image.jpeg'
@@ -88,19 +83,17 @@ function getMenu() {
         data: {},
         async: false,
         success: function (response) {
-            console.log(response)
             let element
             for (let i = 0; i < response['menus'].length; i++) {
                 element = response['menus'][i];
                 let menuName = element['productName']
                 let menuImage = element['image']
-                console.log(menuImage)
                 let menuCost = element['cost']
 
                 let temp_html = `
                             <div class="card mb-3"">
                                 <div class="row g-0">
-                                        <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+                                        <input class="form-check-input mt-0" type="checkbox" value='${JSON.stringify(element)}' aria-label="Checkbox for following text input" name="menuCheckbox">
                                     <div class="col-md-4">
                                         <img src="${menuImage}" class="img-fluid rounded-start" alt="...">
                                     </div>
@@ -110,6 +103,7 @@ function getMenu() {
                                             <p class="card-text">${menuCost}</p>
                                         </div>
                                     </div>
+                                    <input type="number" id="quantity" name="count" min="0" max="100">
                                 </div>
                             </div>
                             `
@@ -122,5 +116,13 @@ function getMenu() {
 }
 
 function orderComplete() {
-    location.href = '/pay'
+    let orders = []
+    $('input:checkbox[name="menuCheckbox"]').each(function () {
+        if(this.checked){
+            console.log(this.value)
+            orders.push(JSON.parse(this.value,))
+        }
+      })
+    console.log(orders)
+    // location.href = '/pay'
 }
