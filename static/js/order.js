@@ -55,6 +55,7 @@ function getPlace() {
                 let temp_html = `
                             <div class="card mb-3">
                                 <div class="row g-0">
+                                    <input class="form-check-input" type="radio" name="placeCheckbox" value='${JSON.stringify(element)}'>
                                     <div class="col-md-4">
                                         <img src=${placeImage} class="img-fluid rounded-start" alt="...">
                                     </div>
@@ -103,7 +104,7 @@ function getMenu() {
                                             <p class="card-text">${menuCost}</p>
                                         </div>
                                     </div>
-                                    <input type="number" id="quantity" name="count" min="0" max="100">
+                                    <input type="number" id="${menuName}" name="count" min="0" max="100" value="0">
                                 </div>
                             </div>
                             `
@@ -116,13 +117,27 @@ function getMenu() {
 }
 
 function orderComplete() {
+    let place
+    $('input:radio[name="placeCheckbox"]').each(function () {
+        if(this.checked){
+            place=JSON.parse(this.value)
+        }
+      })
+
     let orders = []
     $('input:checkbox[name="menuCheckbox"]').each(function () {
         if(this.checked){
-            console.log(this.value)
-            orders.push(JSON.parse(this.value,))
+            let data = JSON.parse(this.value)
+            let count = parseInt(document.getElementById(data['productName']).value)
+            if (count!=0){
+                data['count'] = count
+                data['cost'] = data['count']*data['cost']
+                orders.push(data)
+            }
         }
       })
-    console.log(orders)
+    let result = {"place":place, "order":orders}
+    console.log(result)
+    localStorage.setItem("orders",JSON.stringify(result))
     // location.href = '/pay'
 }
