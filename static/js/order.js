@@ -5,19 +5,34 @@ $(document).ready(function (){
 function showList() {
     let placeHtml = getPlace()
     let menuHtml = getMenu()
+    maxRows = Math.max(placeHtml.length, menuHtml.length)
 
-    let html = placeHtml.map(function (e, i) {return [e,menuHtml[i]] })
+    console.log(placeHtml.length)
+    console.log(menuHtml.length)
+    console.log(maxRows)
+    let html = []
+    for (let i = 0; i < maxRows; i++) {
+        let place = placeHtml[i]
+        let menu = menuHtml[i]
+
+        if (place==null) {
+            place = ``
+        }
+        if (menu==null) {
+            menu = ``
+        }
+        html.push([place, menu])
+        
+    }
+    console.log(html.length)
 
     for (let i = 0; i < html.length; i++) {
         let element = html[i];
         let temp_html = `<tr>
                             <td>${element[0]}</td>
                             <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault" style="width:500px">
-                                        ${element[1]}
-                                    </label>
+                                <div class="d-flex align-content-center">
+                                    ${element[1]}
                                 </div>
                             </td>
                         </tr>`
@@ -26,25 +41,24 @@ function showList() {
     
 }
 
-        let temp_html = `
-
 function getPlace() {
+    let placeHtml = new Array()
     $.ajax({
         type: "GET",
         url: "/place",
         data: {},
-        dataType: "dataType",
+        async: false,
         success: function (response) {
             let element
-            let placeHtml = []
-            for (let i = 0; i < response.length; i++) {
-                element = response[i];
-                let placeName = response['name']
-                let placeAddress = response['address']
-                let placeImage = response['image']
+            for (let i = 0; i < response['places'].length; i++) {
+                element = response['places'][i];
+                // console.log(element)
+                let placeName = element['storeName']
+                let placeAddress = element['storeAddress']
+                let placeImage = 'static/images/place_image.jpeg'
 
                 let temp_html = `
-                            <div class="card mb-3" style="max-width: 300px;">
+                            <div class="card mb-3">
                                 <div class="row g-0">
                                     <div class="col-md-4">
                                         <img src=${placeImage} class="img-fluid rounded-start" alt="...">
@@ -61,30 +75,34 @@ function getPlace() {
                 
                 placeHtml.push(temp_html)
             }
-            return placeHtml
         }
     });
+    return placeHtml
 }
 
 function getMenu() {
+    let menuHtml = new Array()
     $.ajax({
         type: "GET",
         url: "/menu",
         data: {},
+        async: false,
         success: function (response) {
+            console.log(response)
             let element
-            let menuHtml = []
-            for (let i = 0; i < response.length; i++) {
-                element = response[i];
-                let menuName = response['name']
-                let menuImage = response['image']
-                let menuCost = response['cost']
+            for (let i = 0; i < response['menus'].length; i++) {
+                element = response['menus'][i];
+                let menuName = element['productName']
+                let menuImage = element['image']
+                console.log(menuImage)
+                let menuCost = element['cost']
 
                 let temp_html = `
-                            <div class="card mb-3" style="max-width: 300px;">
+                            <div class="card mb-3"">
                                 <div class="row g-0">
+                                        <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
                                     <div class="col-md-4">
-                                        <img src=${menuImage} class="img-fluid rounded-start" alt="...">
+                                        <img src="${menuImage}" class="img-fluid rounded-start" alt="...">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
@@ -98,8 +116,11 @@ function getMenu() {
                 
                 menuHtml.push(temp_html)
             }
-            return menuHtml
         }
     });
-    
+    return menuHtml
+}
+
+function orderComplete() {
+    location.href = '/pay'
 }
