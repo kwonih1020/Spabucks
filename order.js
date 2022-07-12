@@ -11,13 +11,22 @@ function showList() {
     for (let i = 0; i < html.length; i++) {
         let element = html[i];
         let temp_html = `<tr>
-                            <td>${element[0]}<td>
-                            <td>${element[1]}<td>
+                            <td>${element[0]}</td>
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault" style="width:500px">
+                                        ${element[1]}
+                                    </label>
+                                </div>
+                            </td>
                         </tr>`
         $('#menuList').append(temp_html);
     }
     
 }
+
+        let temp_html = `
 
 function getPlace() {
     $.ajax({
