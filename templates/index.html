@@ -61,7 +61,7 @@
         </a>
         <ul class="main-menu">
             <li class="item">
-                <a href="/order"><div class="item__name" id="order">주문하기</div></a>
+                <div class="item__name" id="order" onclick="window.location.href = '/order';">주문하기</div>
             </li>
             <li class="item">
                 <div class="item__name" id="log_in">로그인</div>
@@ -99,7 +99,7 @@
                     <input type="text" placeholder="아이디를 입력하세요."/>
                     <input type="password" placeholder="비밀번호를 입력하세요."/>
                     <input type="submit" value="로그인"/>
-                    <input id="register" type="button" value="회원가입"/>
+                    <!-- <input id="register" type="button" value="회원가입"/> -->
                     <p>
                         * 비밀번호를 타 사이트와 같이 사용할 경우 도용 위험이 있으니,<br/>
                         정기적으로 비밀번호를 변경하세요!
