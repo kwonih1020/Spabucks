@@ -33,8 +33,8 @@ def pay():
         'order': request.form,
         'request.json': request.json,
     })
-    # temp=db.beverages.find_one({"productName":"쿨 라임 피지오","temp":{"$elemMatch":{"temp":"ICE"}}})
-    # order2 = {"productName":order.productName, "temp":"ICE", "size": "TALL", "cost":order.cost}
+    temp=db.beverages.find_one({"productName":"쿨 라임 피지오","temp":{"$elemMatch":{"temp":"ICE"}}})
+    order2 = {"productName":order.productName, "temp":"ICE", "size": "TALL", "cost":order.cost}
     return render_template('payService.html', place=place, order=order, productName=temp)
 
 @app.route("/", methods=["POST"])
