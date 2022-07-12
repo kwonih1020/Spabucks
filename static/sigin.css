@@ -72,3 +72,26 @@
     color: #006633;
     text-align: center;
 }
+
+.signin__card .close-button {
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap
+}
+.signin .signin__card{
+    position: relative;
+}
+
+.signin .signin__card .top-right {
+    position: absolute;
+    right: 0;
+    top: 0
+}
