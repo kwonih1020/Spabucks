@@ -57,7 +57,7 @@ def getMenu():
     beverages = tuple(db.beverages.find({},{'_id':False}))
     foods = tuple(db.foods.find({},{'_id':False}))
     for b in beverages:
-        b['image'] = f'/static/images/beverage/{b["image"]}'
+        b['image'] = f'/static/images/food/{b["image"]}'
     for f in foods:
         f['image'] = f'/static/images/food/{f["image"]}'
     menus = beverages+foods
