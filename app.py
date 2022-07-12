@@ -21,7 +21,23 @@ def order():
 
 @app.route("/pay", methods=["GET"])
 def pay():
-    return render_template('payService.html')
+
+    place = db.places.find_one({"storeName": "건국대"})
+    getMenu = "아메리카노"
+    order = db.beverages.find_one({"productName": getMenu})
+    temp = "ice"  # get data
+    size = "venti" # get data
+    tempAddCost = db.temp.find_one({"temp": temp})
+    sizeAddCost = db.size.find_one({"size": size})
+    data = jsonify({
+        'id': ,
+        'place': place["storeName"],
+        'order': request.form,
+        'request.json': request.json,
+    })
+    temp=db.beverages.find_one({"productName":"쿨 라임 피지오","temp":{"$elemMatch":{"temp":"ICE"}}})
+    order2 = {"productName":order.productName, "temp":"ICE", "size": "TALL", "cost":order.cost}
+    return render_template('payService.html', place=place, order=order, productName=temp)
 
 
 @app.route("/", methods=["POST"])

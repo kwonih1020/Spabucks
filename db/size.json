@@ -1,0 +1,4 @@
+[
+  { "id": 1, "temp": "ice", "addCost": 500},
+  { "id": 2, "temp": "hot", "addCost": 0}
+]

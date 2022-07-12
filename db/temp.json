@@ -1,0 +1,5 @@
+[
+  { "id": 1, "size": "tall", "addCost": 0},
+  { "id": 2, "size": "grande", "addCost": 500},
+  { "id": 3, "size": "venti", "addCost": 1000}
+]
