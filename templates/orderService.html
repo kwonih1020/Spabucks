@@ -69,11 +69,62 @@
             </li>
         </ul>
     </div>
+    <script src="../static/js/order.js"></script>
 </header>
 
 <!--VISUAL-->
 <section class="visual">
-<h1> 주문하는사이트이올시다. </h1>
+    <h1>주문하기</h1>
+    <div class="row justify-content-center">
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th scope="col">지점</th>
+            <th scope="col">메뉴</th>
+          </tr>
+        </thead>
+        <tbody id="menuList">
+          <tr>
+            <td>
+              <div class="card mb-3" style="max-width: 300px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="..." class="img-fluid rounded-start" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">placeName</h5>
+                      <p class="card-text">placeAddress</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex align-content">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" style="margin-top: auto;margin-bottom: auto;width: 30px;height: 30px;color: red;">
+              <div class="card mb-3" style="max-width: 300px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="..." class="img-fluid rounded-start" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">placeName</h5>
+                      <p class="card-text">placeAddress</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row justify-content-center">
+      <button style="width:100px">주문완료</button>
+    </div>
 
 </section>
 
