@@ -6,7 +6,7 @@ import certifi
 import json
 app = Flask(__name__)
 ca = certifi.where()
-client = MongoClient('mongodb+srv://test:sparta@cluster0.axu42.mongodb.net/?retryWrites=true&w=majority')
+client = MongoClient('mongodb+srv://test:sparta@cluster0.axu42.mongodb.net/?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.spabucks
 
 
@@ -42,14 +42,6 @@ def pay():
     # ordersId = request.form['ordersId']
 
     return render_template('payService.html', orders=orderList)
-
-
-@app.route("/", methods=["POST"])
-def bucket_done():
-    sample_receive = request.form['sample_give']
-    print(sample_receive)
-
-    return jsonify({'msg': 'POST'})
 
 
 @app.route("/menu", methods=["GET"])
