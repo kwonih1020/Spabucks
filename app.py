@@ -1,17 +1,18 @@
-from datetime import datetime, timedelta
+import datetime
 import jwt
-from flask import Flask, render_template, request, jsonify, make_response
+from flask import Flask, render_template, request, jsonify, make_response, redirect, url_for
 from pymongo import MongoClient
 import certifi
 import hashlib
 import json
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
-SECRET_KEY =
+SECRET_KEY = 'SPARTA'
 
 ca = certifi.where()
-client = MongoClient()
+client = MongoClient('mongodb+srv://test:sparta@cluster0.axu42.mongodb.net/?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.spabucks
 
 
@@ -54,15 +55,15 @@ def sign_up():
 def sign_in():
     # 로그인
     userid_receive = request.form['userId_give']
-    password_receive = request.form['password_give']
+    pw_receive = request.form['pw_give']
 
-    pw_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
+    pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
     result = db.users.find_one({'userId': userid_receive, 'password': pw_hash})
 
     if result is not None:
         payload = {
-         'id': userid_receive,
-         'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
+            'id': userid_receive,
+            'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
@@ -77,12 +78,13 @@ def order():
     token_receive = request.cookies.get('mytoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-
-        return render_template('orderService.html')
+        user_info = db.users.find_one({"userId":payload['id']})
+        return render_template('orderService.html', user_info=user_info)
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+
 
 @app.route("/pay", methods=["POST"])
 def pay_complete():
@@ -138,6 +140,7 @@ def pay():
     data = { "a" : "b", "c":[{"d":"e"}]}
     return render_template('payService.html', data=json.dumps(orderList, ensure_ascii=False), orders=orderList, all_cost=all_cost)
     # return resp
+
 
 @app.route("/order_list", methods=["GET"])
 def get_cookie():
