@@ -52,34 +52,6 @@
 
     <title>스파벅스</title>
 
-    <style>
-        .login-input-box {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            width: 95%;
-            margin: 10px 20px 10px 10px;
-            padding: 10px 10px 10px 10px;
-
-        }
-        .login-input-box > button:hover {
-            background-color: white;
-            color: #272727;
-        }
-        .pw_inputbox {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            margin: auto;
-            width: 95%;
-        }
-
-    </style>
-
     <script>
         function sign_in() {
             let userId = $("#login-id").val()
@@ -278,7 +250,6 @@
         </div>
     </div>
 
-    <!-- <h1>로그인</h1> -->
     <div class="signin" id="sign-popup">
         <div class="signin__card">
             <button type="button" class="close-button top-right" data-dismiss="modal" aria-label="Close"><span
@@ -298,40 +269,41 @@
         </div>
     </div>
 
-    <!-- <h1>회원가입</h1> -->
     <div class="signin" id="membership-popup">
         <div class="signin__card">
             <button type="button" class="close-button top-right" data-dismiss="modal" aria-label="Close"><span
                     aria-hidden="true">&times;</span></button>
             <h2>
-                <strong>Welcome!</strong> 스파벅스에 오신 것을 환영합니다.
+                <strong>회원가입 -</strong> 스파벅스에 오신 것을 환영합니다.
             </h2>
+            <div id="id_input_box" class="login-input-box">
+                <div class="check-input">
+                    <input id="input-userId" type="text" placeholder="아이디를 입력하세요."/>
+                    <button class="id-check-button" onclick="check_id()" type="button">ID 검증</button>
+                </div>
 
+                <p id="help-id">아이디는 2-10자의 영문과 숫자와 일부 특수문자(._-)만 입력 가능합니다.</p>
+                <p id="help-id-login" class="help is-danger"></p>
 
-            <div id="id_input_box">
-                <input id="input-userId" type="text" placeholder="아이디를 입력하세요."/>
-                <button onclick="check_id()">ID 검증</button>
             </div>
-            <p id="help-id" class="help is-hidden">아이디는 2-10자의 영문과 숫자와 일부 특수문자(._-)만 입력 가능합니다.</p>
-            <p id="help-id-login" class="help is-danger"></p>
-
-
             <div class="nickname_input_box">
-                <input id="input-nickname" type="text" placeholder="사용할 닉네임을 입력하세요."/>
-                <button onclick="check_nickname()">중복 확인</button>
+                <div class="check-input">
+                    <input id="input-nickname" type="text" placeholder="사용할 닉네임을 입력하세요."/>
+                    <button class="name-check-button" onclick="check_nickname()" type="button">중복 확인</button>
+                </div>
+                <p id="help-nickname" class="help is-hidden">중복된 닉네임인지 확인합니다.</p>
+                <p id="help-id-login" class="help is-danger"></p>
             </div>
-            <p id="help-nickname" class="help is-hidden">중복된 닉네임인지 확인합니다.</p>
-            <p id="help-id-login" class="help is-danger"></p>
-
-            <div class="pw_inputbox">
-                <input id="input-pw" type="password" placeholder="비밀번호를 입력하세요."/>
-                <input id="input-pw2" type="password" placeholder="비밀번호 재입력"/>
+            <div class="pw_inputbox nickname_input_box">
+                <div class="check-input">
+                    <input id="input-pw input-nickname" type="password" placeholder="비밀번호를 입력하세요."/>
+                    <input id="input-pw2 input-nickname" type="password" placeholder="비밀번호 재입력"/>
+                </div>
             </div>
             <p id="help-pw" class="help is-hidden">영문과 숫자 조합의 8-20자의 비밀번호를 설정해주세요.</br>특수문자(!@#$%^&*)도 사용
                 가능합니다.</p>
-            </nav>
             <hr>
-            <button onclick="sign_up()">회원가입</button>
+            <button type='button' onclick="sign_up()" class="btn btn-danger membership-button">회원가입</button>
         </div>
     </div>
 </section>
