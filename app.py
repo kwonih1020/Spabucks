@@ -8,10 +8,10 @@ import json
 
 app = Flask(__name__)
 
-SECRET_KEY =
+SECRET_KEY = ''
 
 ca = certifi.where()
-client = MongoClient()
+client = MongoClient('', tlsCAFile=ca)
 db = client.spabucks
 
 
