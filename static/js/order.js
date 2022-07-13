@@ -48,6 +48,7 @@ function getPlace() {
 
                 let temp_html = `<div class="card mb-3">
                                     <div class="row">
+                                        <input class="form-check-input mt-0 menu-checkbox" type="radio" value='${JSON.stringify(element)}' name="placeRadio">
                                         <div class="col-md-4">
                                             <img src=${placeImage} class="img-fluid rounded-start" alt="...">
                                         </div>
@@ -179,7 +180,7 @@ function getMenu() {
 
 function orderComplete() {
     let place
-    $('input:radio[name="placeCheckbox"]').each(function () {
+    $('input:radio[name="placeRadio"]').each(function () {
         if(this.checked){
             place=JSON.parse(this.value)
         }
