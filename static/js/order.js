@@ -177,20 +177,27 @@ function orderComplete() {
         if(this.checked){
             let data = JSON.parse(this.value)
             let count = parseInt(document.getElementById(data['productName']).value)
-            let addCost = 0
             if (count!=0){
-                let tempData = JSON.parse(document.getElementById(`${data['productName']}TempSelector`).value)
-                let sizeData = JSON.parse(document.getElementById(`${data['productName']}SizeSelector`).value)
-
-                data['count'] = count
-                data['cost'] = (data['cost']+sizeData['addCost']+tempData['addCost'])*data['count']
-                data['size'] = sizeData['key']
-                data['temp'] = tempData['key']
-                orders.push(data)
+                try {
+                    let tempData
+                    let sizeData
+                    let addCost = 0
+                    if(data['kind']=='beverages'){
+                        tempData = JSON.parse(document.getElementById(`${data['productName']}TempSelector`).value)
+                        sizeData = JSON.parse(document.getElementById(`${data['productName']}SizeSelector`).value)
+                        data['size'] = sizeData['key']
+                        data['temp'] = tempData['key']
+                        addCost = sizeData['addCost']+tempData['addCost']
+                    }
+                    data['count'] = count
+                    data['cost'] = (data['cost']+addCost)*data['count']
+                    orders.push(data)
+                } catch (error) {
+                    alert('음료의 온도와 크기를 선택해 주세요')
+                }
             }
         }
     })
-    console.log(orders)
     if(orders.length==0){
         alert("제품을 1개 이상 선택해 주세요.")
     }
