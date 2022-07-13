@@ -89,43 +89,45 @@ function getMenu() {
                 let option_html
                 if (kind=='beverages') {
 
-                    let defaultData = function () {return {'activation':'disabled', 'addCost':'구매불가'}}
-                    let tempData = {'ICE':defaultData(), 
-                                    'HOT':defaultData()}
+                    let defaultData = function (val) {return {key:val,'activation':'disabled', 'addCostStr':'구매불가', 'addCost':0}}
+                    let tempData = {'ICE':defaultData('ICE'), 
+                                    'HOT':defaultData('HOT')}
                     for (let i = 0; i < temp.length; i++) {
                         const element = temp[i];
                         if (element['addCost']==0){
-                            tempData[element['temp']]['addCost'] = ""
+                            tempData[element['temp']]['addCostStr'] = ""
                         } else{
-                            tempData[element['temp']]['addCost'] = `+${element['addCost']}`
+                            tempData[element['temp']]['addCostStr'] = `+${element['addCost']}`
+                            tempData[element['temp']]['addCost'] = element['addCost']
                         }
                         tempData[element['temp']]['activation'] = 'enabled'
                     }
 
-                    let sizeData = {'TALL':defaultData(), 
-                                    'GRANDE':defaultData(), 
-                                    'VENTI':defaultData()}
+                    let sizeData = {'TALL':defaultData('TALL'), 
+                                    'GRANDE':defaultData('GRANDE'), 
+                                    'VENTI':defaultData('VENTI')}
                     for (let i = 0; i < size.length; i++) {
                         const element = size[i];
                         if (element['addCost']==0){
-                            sizeData[element['size']]['addCost'] = ""
+                            sizeData[element['size']]['addCostStr'] = ""
                         } else{
-                            sizeData[element['size']]['addCost'] = `+${element['addCost']}`
+                            sizeData[element['size']]['addCostStr'] = `+${element['addCost']}`
+                            sizeData[element['size']]['addCost'] = element['addCost']
                         }
                         sizeData[element['size']]['activation'] = 'enabled'
                     }
 
                     option_html =`  <div class="dropdown-group">
-                                          <select class="form-check">
+                                          <select class="form-check" id="${menuName}TempSelector">
                                                 <option  disabled selected>TEMP</option>
-                                                <option class="" value='${JSON.stringify(element)}' name="${menuName}tempSelector" id="${menuName}ICE" ${tempData['ICE']['activation']}>ICE ${tempData['ICE']['addCost']}</option>
-                                                <option class="" value='${JSON.stringify(element)}' name="${menuName}tempSelector" id="${menuName}HOT" ${tempData['HOT']['activation']}>HOT ${tempData['HOT']['addCost']}</option>
+                                                <option class="" value='${JSON.stringify(tempData['ICE'])}' ${tempData['ICE']['activation']}>ICE ${tempData['ICE']['addCostStr']}</option>
+                                                <option class="" value='${JSON.stringify(tempData['HOT'])}' ${tempData['HOT']['activation']}>HOT ${tempData['HOT']['addCostStr']}</option>
                                           </select>
-                                          <select class="form-check">
+                                          <select class="form-check" id="${menuName}SizeSelector">
                                                 <option  disabled selected>SIZE</option>
-                                                <option class="" value='${JSON.stringify(element)}' name="${menuName}sizeSelector" id="${menuName}TALL" ${sizeData['TALL']['activation']}>TALL ${sizeData['TALL']['addCost']}</option>
-                                                <option class="" value='${JSON.stringify(element)}' name="${menuName}sizeSelector" id="${menuName}GRANDE" ${sizeData['GRANDE']['activation']}>GRANDE ${sizeData['GRANDE']['addCost']}</option>
-                                                <option class="" value='${JSON.stringify(element)}' name="${menuName}sizeSelector" id="${menuName}VENTI" ${sizeData['VENTI']['activation']}>VENTI ${sizeData['VENTI']['addCost']}</option>
+                                                <option class="" value='${JSON.stringify(sizeData['TALL'])}' ${sizeData['TALL']['activation']}>TALL ${sizeData['TALL']['addCostStr']}</option>
+                                                <option class="" value='${JSON.stringify(sizeData['GRANDE'])}' ${sizeData['GRANDE']['activation']}>GRANDE ${sizeData['GRANDE']['addCostStr']}</option>
+                                                <option class="" value='${JSON.stringify(sizeData['VENTI'])}' ${sizeData['VENTI']['activation']}>VENTI ${sizeData['VENTI']['addCostStr']}</option>
                                           </select>
                                     </div>`
                 } else {
@@ -166,22 +168,57 @@ function orderComplete() {
             place=JSON.parse(this.value)
         }
       })
+    if(place==null){
+        alert("주문하실 지점을 선택하세요")
+    }
+
     let orders = []
     $('input:checkbox[name="menuCheckbox"]').each(function () {
         if(this.checked){
             let data = JSON.parse(this.value)
             let count = parseInt(document.getElementById(data['productName']).value)
             if (count!=0){
-                data['count'] = count
-                data['cost'] = data['count']*data['cost']
-                data['size'] = 'tall'
-                data['temp'] = 'ice'
-                orders.push(data)
+                try {
+                    let tempData
+                    let sizeData
+                    let addCost = 0
+                    if(data['kind']=='beverages'){
+                        tempData = JSON.parse(document.getElementById(`${data['productName']}TempSelector`).value)
+                        sizeData = JSON.parse(document.getElementById(`${data['productName']}SizeSelector`).value)
+                        data['size'] = sizeData['key']
+                        data['temp'] = tempData['key']
+                        addCost = sizeData['addCost']+tempData['addCost']
+                    }
+                    data['count'] = count
+                    data['cost'] = (data['cost']+addCost)*data['count']
+                    orders.push(data)
+                } catch (error) {
+                    alert('음료의 온도와 크기를 선택해 주세요')
+                }
             }
         }
     })
-    let result = {"place":place, "order":orders}
-    console.log(result)
-    localStorage.setItem("orders",JSON.stringify(result))
-    // location.href = '/pay'
+    if(orders.length==0){
+        alert("제품을 1개 이상 선택해 주세요.")
+    }
+    if (orders.length!=0 & place!=null){
+        let result = {"place":place, "order":orders}
+        page_move(result)
+    }
+}
+
+function page_move(orders) {
+    let data = JSON.stringify(orders)
+
+    $.ajax({
+        type: "POST",
+        url: "/paypage",
+        data: data,
+        dataType: "json",
+        contentType:'application/json',
+        async: false,
+        success: function (response) {
+        }
+    });
+    location.href = '/pay'
 }

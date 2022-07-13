@@ -76,6 +76,7 @@ def sign_in():
 @app.route("/order", methods=["GET"])
 def order():
     token_receive = request.cookies.get('mytoken')
+    return render_template('orderService.html')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.users.find_one({"userId":payload['id']})
@@ -84,6 +85,13 @@ def order():
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+
+
+@app.route("/paypage", methods=["POST"])
+def assign_order_data():
+    global orderList
+    orderList = request.get_json()
+    return None
 
 
 @app.route("/pay", methods=["POST"])
@@ -98,7 +106,9 @@ def pay_complete():
     collection_orders= {"place":place['storeName'], 'id':idx, 'userId':1, 'createDate':date, 'totalCost': receive['all_cost']}
     collection_order= list()
     for i in orders:
-        order= {'productName': i['productName'], 'ordersId':idx, 'temp': i['temp'], 'size': i['size'], 'cost': i['cost'], 'count': i['count']}
+        order= {'productName': i['productName'], 'ordersId':idx,  'cost': i['cost'], 'count': i['count']}
+        if i['kind']=='beverage':
+            order.update({'temp': i['temp'], 'size': i['size']})
         collection_order.append(order)
         # db.order.insert_many(data)
     collection_orders['order']=collection_order
@@ -112,9 +122,10 @@ def pay_complete():
 
 @app.route("/pay", methods=["GET"])
 def pay():
-    orderList = {"place": {"contact":"1522-3232", "id":2, "storeAddress":"서울시강남구", "storeName":"압구정로"},
-                "order": [{"productName":"아메리카노","temp":"ICE","size":"tall","cost":10000, "count":2, "image":"americano"},
-                         {"productName":"쿨 라임 피지오","temp":"ICE","size":"venti","cost":11000, "count":2, "image":"cafe_latte"}]}
+    print(orderList)
+    # orderList = {"place": {"contact":"1522-3232", "id":2, "storeAddress":"서울시강남구", "storeName":"압구정로"},
+    #             "order": [{"productName":"아메리카노","temp":"ICE","size":"tall","cost":10000, "count":2, "image":"americano"},
+    #                      {"productName":"쿨 라임 피지오","temp":"ICE","size":"venti","cost":11000, "count":2, "image":"cafe_latte"}]}
     # len = len(orderList)
     # store=request value
     # place = db.places.find_one({"storeName": "건국대"})
