@@ -76,7 +76,7 @@ def sign_in():
 @app.route("/order", methods=["GET"])
 def order():
     token_receive = request.cookies.get('mytoken')
-    return render_template('orderService.html')
+    # return render_template('orderService.html')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.users.find_one({"userId":payload['id']})
