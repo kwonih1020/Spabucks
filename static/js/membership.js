@@ -100,12 +100,12 @@ function sign_up() {
     let pw2 = $("#input-pw2").val()
     let nickname = $("#input-nickname").val()
     console.log(userId, nickname)
-    {
-        #pw
-        로그는
-        찍지X
-    #
-    }
+    // {
+    //     #pw
+    //     로그는
+    //     찍지X
+    // #
+    // }
 
 
     if ($("#help-id").hasClass("is-danger")) {
