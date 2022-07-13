@@ -55,7 +55,7 @@ def sign_up():
 def sign_in():
     # 로그인
     userid_receive = request.form['userId_give']
-    pw_receive = request.form['pw_give']
+    pw_receive = request.form['password_give']
 
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
     result = db.users.find_one({'userId': userid_receive, 'password': pw_hash})
