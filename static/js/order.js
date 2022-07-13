@@ -179,18 +179,20 @@ function orderComplete() {
             let count = parseInt(document.getElementById(data['productName']).value)
             let addCost = 0
             if (count!=0){
-                let tempData = JSON.parse(document.getElementById(`${data['productName']}TempSelector`).value)
-                let sizeData = JSON.parse(document.getElementById(`${data['productName']}SizeSelector`).value)
-
-                data['count'] = count
-                data['cost'] = (data['cost']+sizeData['addCost']+tempData['addCost'])*data['count']
-                data['size'] = sizeData['key']
-                data['temp'] = tempData['key']
-                orders.push(data)
+                try {
+                    let tempData = JSON.parse(document.getElementById(`${data['productName']}TempSelector`).value)
+                    let sizeData = JSON.parse(document.getElementById(`${data['productName']}SizeSelector`).value)
+                    data['count'] = count
+                    data['cost'] = (data['cost']+sizeData['addCost']+tempData['addCost'])*data['count']
+                    data['size'] = sizeData['key']
+                    data['temp'] = tempData['key']
+                    orders.push(data)
+                } catch (error) {
+                    alert('음료의 온도와 크기를 선택해 주세요')
+                }
             }
         }
     })
-    console.log(orders)
     if(orders.length==0){
         alert("제품을 1개 이상 선택해 주세요.")
     }
@@ -213,5 +215,5 @@ function page_move(orders) {
         success: function (response) {
         }
     });
-    location.href = '/pay'
+    // location.href = '/pay'
 }
