@@ -96,6 +96,10 @@ def assign_order_data():
 
 @app.route("/pay", methods=["POST"])
 def pay_complete():
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    userId = db.users.find_one({"userId":payload['id']})['userId']
+
     receive = request.get_json()
     data = receive['data']
     place = receive['data']['place']
@@ -103,7 +107,7 @@ def pay_complete():
     count = db.orders.count_documents({})
     idx = count+1
     date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    collection_orders= {"place":place['storeName'], 'id':idx, 'userId':1, 'createDate':date, 'totalCost': receive['all_cost']}
+    collection_orders= {"place":place['storeName'], 'id':idx, 'userId':userId, 'createDate':date, 'totalCost': receive['all_cost']}
     collection_order= list()
     for i in orders:
         order= {'productName': i['productName'], 'ordersId':idx,  'cost': i['cost'], 'count': i['count']}
@@ -122,7 +126,6 @@ def pay_complete():
 
 @app.route("/pay", methods=["GET"])
 def pay():
-    print(orderList)
     # orderList = {"place": {"contact":"1522-3232", "id":2, "storeAddress":"서울시강남구", "storeName":"압구정로"},
     #             "order": [{"productName":"아메리카노","temp":"ICE","size":"tall","cost":10000, "count":2, "image":"americano"},
     #                      {"productName":"쿨 라임 피지오","temp":"ICE","size":"venti","cost":11000, "count":2, "image":"cafe_latte"}]}
@@ -155,7 +158,11 @@ def pay():
 
 @app.route("/order_list", methods=["GET"])
 def get_cookie():
-    order = list(db.orders.find({}, {'_id': False}).sort("_id", -1))
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    userId = db.users.find_one({"userId":payload['id']})['userId']
+    order = list(db.orders.find({'userId':userId}, {'_id': False}).sort("_id", -1))
+    print(order)
     # return jsonify({'replys': replys})
     return render_template('orderList.html', data=order)
 
