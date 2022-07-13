@@ -1,8 +1,3 @@
-const order= document.getElementById("order");
-order.addEventListener("click", ()=>{
-    window.location.href="/order";
-});
-
 $(document).ready(function () {
     /**
      * 오른쪽 하단 화살표 누르면 위에 가기
@@ -36,9 +31,3 @@ $(document).ready(function () {
     const year = now.getFullYear();
     $('.this-year').text(year);
 });
-
-/**
- * 올해가 몇 년도인지 계산
- */
- const thisYear = document.querySelector(".this-year");
- thisYear.textContent = new Date().getFullYear();
