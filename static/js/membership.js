@@ -15,6 +15,11 @@ function is_id_satisfy(asValue) {
     return regExp.test(asValue);
 }
 
+function is_nickname_satisfy(asValue) {
+    let regExp = /^(?=.*[가-힣a-zA-Z])[-가-힣-a-zA-Z0-9_.]{2,10}$/;
+    return regExp.test(asValue);
+}
+
 function is_password_satisfy(asValue) {
     let regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
     return regExp.test(asValue);
@@ -57,6 +62,17 @@ function check_id() {
 function check_nickname() {
     let nickname = $("#input-nickname").val()
 
+    if (nickname == "") {
+        $("#help-nickname").text("닉네임을 입력해주세요.").removeClass("is-safe").addClass("is-danger")
+        $("#input-nickname").focus()
+        return;
+    }
+    if (!is_nickname_satisfy(nickname)) {
+        $("#help-nickname").text("한글,영문,숫자, 일부 특수문자(._-) 사용 가능. 2-10자 길이").removeClass("is-safe").addClass("is-danger")
+        $("#input-nickname").focus()
+        return;
+    }
+
     $("#help-nickname").addClass("is-loading")
     $.ajax({
         type: "POST",
@@ -84,11 +100,13 @@ function sign_up() {
     let pw2 = $("#input-pw2").val()
     let nickname = $("#input-nickname").val()
     console.log(userId, nickname)
-    // {
-    //     pw
-    //     로그는
-    //     찍지X
-    // }
+    {
+        #pw
+        로그는
+        찍지X
+    #
+    }
+
 
     if ($("#help-id").hasClass("is-danger")) {
         alert("아이디를 다시 확인해주세요.")
@@ -135,3 +153,8 @@ function sign_up() {
     });
 }
 
+function sign_out() {
+    $.removeCookie('mytoken', {path: '/'});
+    alert('로그아웃!')
+    window.location.href = "/"
+}
