@@ -8,10 +8,10 @@ import json
 
 app = Flask(__name__)
 
-SECRET_KEY =
+# SECRET_KEY =
 
 ca = certifi.where()
-client = MongoClient()
+client = MongoClient('mongodb+srv://test:sparta@cluster0.axu42.mongodb.net/?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.spabucks
 
 
@@ -75,6 +75,7 @@ def sign_in():
 @app.route("/order", methods=["GET"])
 def order():
     token_receive = request.cookies.get('mytoken')
+    return render_template('orderService.html')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
 
@@ -88,7 +89,6 @@ def order():
 def assign_order_data():
     global orderList
     orderList = request.get_json()
-    print(orderList)
     return None
 
 @app.route("/pay", methods=["POST"])
