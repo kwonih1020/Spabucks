@@ -60,9 +60,15 @@
             $.ajax({
                 type: 'POST',
                 url: '/pay',
+<<<<<<< HEAD
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({data, all_cost: all_cost}),
+=======
+                dataType : "json",
+	            contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ data:data, all_cost :all_cost }),
+>>>>>>> min_pageOrder
                 success: function (response) {
                     alert(response['msg'])
                     window.location.href = "/order_list"
