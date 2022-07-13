@@ -40,7 +40,7 @@ $(document).ready(function () {
                     $.cookie('mytoken', response['token'], {path: '/'});
                     alert("환영합니다." + userId + "님")
                     {
-                        // window.location.replace("/order");
+                        window.location.replace("/order");
 
                     }
 
