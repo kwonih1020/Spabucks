@@ -116,15 +116,17 @@ function getMenu() {
                     }
 
                     option_html =`  <div class="dropdown-group">
-                                      <select class="form-check">
-                                        <option class="" value='${JSON.stringify(element)}' name="${menuName}tempSelector" id="${menuName}ICE" ${tempData['ICE']['activation']}>ICE ${tempData['ICE']['addCost']}</option>
-                                        <option class="" value='${JSON.stringify(element)}' name="${menuName}tempSelector" id="${menuName}HOT" ${tempData['HOT']['activation']}>HOT ${tempData['HOT']['addCost']}</option>
-                                      </select>
-                                      <select class="form-check">
-                                        <option class="" value='${JSON.stringify(element)}' name="${menuName}sizeSelector" id="${menuName}TALL" ${sizeData['TALL']['activation']}>TALL ${sizeData['TALL']['addCost']}</option>
-                                        <option class="" value='${JSON.stringify(element)}' name="${menuName}sizeSelector" id="${menuName}GRANDE" ${sizeData['GRANDE']['activation']}>GRANDE ${sizeData['GRANDE']['addCost']}</option>
-                                        <option class="" value='${JSON.stringify(element)}' name="${menuName}sizeSelector" id="${menuName}VENTI" ${sizeData['VENTI']['activation']}>VENTI ${sizeData['VENTI']['addCost']}</option>
-                                      </select>
+                                          <select class="form-check">
+                                                <option  disabled selected>TEMP</option>
+                                                <option class="" value='${JSON.stringify(element)}' name="${menuName}tempSelector" id="${menuName}ICE" ${tempData['ICE']['activation']}>ICE ${tempData['ICE']['addCost']}</option>
+                                                <option class="" value='${JSON.stringify(element)}' name="${menuName}tempSelector" id="${menuName}HOT" ${tempData['HOT']['activation']}>HOT ${tempData['HOT']['addCost']}</option>
+                                          </select>
+                                          <select class="form-check">
+                                                <option  disabled selected>SIZE</option>
+                                                <option class="" value='${JSON.stringify(element)}' name="${menuName}sizeSelector" id="${menuName}TALL" ${sizeData['TALL']['activation']}>TALL ${sizeData['TALL']['addCost']}</option>
+                                                <option class="" value='${JSON.stringify(element)}' name="${menuName}sizeSelector" id="${menuName}GRANDE" ${sizeData['GRANDE']['activation']}>GRANDE ${sizeData['GRANDE']['addCost']}</option>
+                                                <option class="" value='${JSON.stringify(element)}' name="${menuName}sizeSelector" id="${menuName}VENTI" ${sizeData['VENTI']['activation']}>VENTI ${sizeData['VENTI']['addCost']}</option>
+                                          </select>
                                     </div>`
                 } else {
                     option_html=``

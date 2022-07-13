@@ -58,3 +58,9 @@ td {
     display: block;
     margin: 0 auto;
 }
+
+.form-check {
+    min-width: min-content;
+    min-height: 1.6rem;
+    width: 162px;
+}
