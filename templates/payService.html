@@ -50,24 +50,27 @@
             crossorigin="anonymous"></script>
 
     <title>스파벅스</title>
+
+    <script defer src="../static/js/main.js"></script>
     <script>
-        function page_move(){
+        function page_move() {
             let data = {{ data|safe }};
             let all_cost = $('#all-cost').text();
             console.log(all_cost);
             $.ajax({
                 type: 'POST',
                 url: '/pay',
-                dataType : "json",
-	            contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ data, all_cost :all_cost }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({data, all_cost: all_cost}),
                 success: function (response) {
                     alert(response['msg'])
-                    window.location.href="/order_list"
+                    window.location.href = "/order_list"
                 }
             })
         }
     </script>
+
 </head>
 <body>
 <header>
@@ -91,29 +94,32 @@
 
 <!--VISUAL-->
 <section class="visual" style="test-align:center;">
-<div id="payService">
-<h2> 결제하기 </h2>
-    <hr>
+    <div id="payService">
+        <h2> 결제하기 </h2>
+        <hr>
 
-<ul class="list-group" id="pay-list-ul">
-  <li class="list-group-item list-group-item-dark pay-list-head"><div>{{ orders.place.storeName }} 지점</div></li>
-    {% for order in orders.order %}
-     <li class="list-group-item pay-list" ><div class="menu-img" style="background-image:url('{{ order.image }}');"></div>
-         <div class="pay-order-list">
-             <span>{{ order.productName }}   /   {{ order.temp }}   /   {{ order.size }} </span>
-             <span> 수량 : {{ order.count }}    금액 : {{ order.cost }}</span>
-         </div>
-     </li>
-    {% endfor %}
-</ul>
-<hr>
-<div id="all-pay-cost">
-    <span> 총 결제 금액  </span> <span id="all-cost">{{ all_cost }}</span><span> 원</span>
-</div>
-<div id="payment">
-    <button type="button" class="btn btn-danger" onclick="page_move()">결제하기</button>
-</div>
-</div>
+        <ul class="list-group" id="pay-list-ul">
+            <li class="list-group-item list-group-item-dark pay-list-head">
+                <div>{{ orders.place.storeName }} 지점</div>
+            </li>
+            {% for order in orders.order %}
+                <li class="list-group-item pay-list">
+                    <div class="menu-img" style="background-image:url('{{ order.image }}');"></div>
+                    <div class="pay-order-list">
+                        <span>{{ order.productName }}   /   {{ order.temp }}   /   {{ order.size }} </span>
+                        <span> 수량 : {{ order.count }}    금액 : {{ order.cost }}</span>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <hr>
+        <div id="all-pay-cost">
+            <span> 총 결제 금액  </span> <span id="all-cost">{{ all_cost }}</span><span> 원</span>
+        </div>
+        <div id="payment">
+            <button type="button" class="btn btn-danger" onclick="page_move()">결제하기</button>
+        </div>
+    </div>
 </section>
 
 <!--FOOTER-->
@@ -121,7 +127,8 @@
     <div class="inner">
 
         <div class="btn-group">
-            <a href="https://map.kakao.com/?map_type=TYPE_MAP&target=car&rt=,,509825,1111908&rt1=&rt2=%ED%8C%80%EC%8A%A4%ED%8C%8C%EB%A5%B4%ED%83%80&rtIds=,1429099039" target="_blank" class="btn btn--white">찾아오시는 길</a>
+            <a href="https://map.kakao.com/?map_type=TYPE_MAP&target=car&rt=,,509825,1111908&rt1=&rt2=%ED%8C%80%EC%8A%A4%ED%8C%8C%EB%A5%B4%ED%83%80&rtIds=,1429099039"
+               target="_blank" class="btn btn--white">찾아오시는 길</a>
             <a href="/order" class="btn btn--white">주문하기</a>
             <a href="/order_list" class="btn btn--white">주문내역</a>
         </div>
@@ -142,5 +149,4 @@
     <div class="material-icons">arrow_upward</div>
 </div>
 </body>
-<script src="../static/js/main.js"></script>
 </html>
