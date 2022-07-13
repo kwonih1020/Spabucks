@@ -22,6 +22,11 @@ def home():
     return render_template('index.html')
 
 
+@app.route("/maintain_login", methods=["GET"])
+def maintain():
+    return render_template('maintainLogin.html')
+
+
 @app.route('/sign_up/check_id', methods=['POST'])
 def check_id():
     user_id_receive = request.form['userId_give']
