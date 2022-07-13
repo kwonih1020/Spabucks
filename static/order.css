@@ -63,4 +63,19 @@ td {
     min-width: min-content;
     min-height: 1.6rem;
     width: 162px;
+    margin-bottom: 7px;
+}
+
+.card-body {
+    display: inline-flex;
+    padding: 1rem 0 0 1rem;
+}
+
+.form-check-input[type=checkbox] {
+    margin-left: 27px;
+}
+
+.card-bottom {
+    flex: 1 1 auto;
+    padding: 0 0 1rem 1rem;
 }
