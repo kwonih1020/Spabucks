@@ -8,8 +8,4 @@ $(document).ready(function () {
         $('#sign-popup').fadeOut(500);
     });
 
-    $('#register').on('click', function () {
-        $('#membership-popup').fadeIn(500);
-    });
-
 });
