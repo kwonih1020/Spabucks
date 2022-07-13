@@ -6,6 +6,7 @@ import certifi
 import hashlib
 import json
 from datetime import datetime, timedelta
+from urllib import parse
 
 app = Flask(__name__)
 
@@ -87,11 +88,11 @@ def order():
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
 
-@app.route("/paypage", methods=["POST"])
-def assign_order_data():
-    global orderList
-    orderList = request.get_json()
-    return None
+# @app.route("/paypage", methods=["POST"])
+# def assign_order_data():
+#     global orderList
+#     orderList = request.get_json()
+#     return None
 
 
 @app.route("/pay", methods=["POST"])
@@ -126,6 +127,8 @@ def pay_complete():
 
 @app.route("/pay", methods=["GET"])
 def pay():
+    data = parse.unquote(request.cookies.get('orderList'))
+    orderList = json.loads(data)
     # orderList = {"place": {"contact":"1522-3232", "id":2, "storeAddress":"서울시강남구", "storeName":"압구정로"},
     #             "order": [{"productName":"아메리카노","temp":"ICE","size":"tall","cost":10000, "count":2, "image":"americano"},
     #                      {"productName":"쿨 라임 피지오","temp":"ICE","size":"venti","cost":11000, "count":2, "image":"cafe_latte"}]}
