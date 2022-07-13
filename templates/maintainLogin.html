@@ -1,10 +1,182 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Open Graph-->
+    <!--http://ogp.me/-->
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="Spabucks"/>
+    <meta property="og:title" content="Sparta Spabucks Korea"/>
+    <meta property="og:description" content="스파벅스는 스파르타코딩에서 가장 인기 있는 커피 전문검으로, 여러가지 커피 종류를 주문하고 받을수 있도록 운영하고 있습니다."/>
+    <meta property="og:image" content="../static/main_pages/og_image.jpeg"/>
+    <meta property="og:url" content="https://sparta-ick.shop/" />
+
+    <!--Twitter Card-->
+    <!--https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started-->
+    <meta property="twitter:card" content="summary"/>
+    <meta property="twitter:site" content="Spabucks"/>
+    <meta property="twitter:title" content="Sparta Spabucks Korea"/>
+    <meta property="twitter:description"
+          content="스파벅스는 스파르타코딩에서 가장 인기 있는 커피 전문점으로, 여러가지 커피 종류를 주문하고 받을수 있도록 운영하고 있습니다."/>
+    <meta property="twitter:image" content="../static/main_pages/og_image.jpeg"/>
+    <meta property="twitter:url" content="https://sparta-ick.shop/" />
+
+    <link rel="icon" href="/static/images/main_pages/favicon.png"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet"/>
+    <!--Google Material Icons-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../static/main.css"/>
+    <link rel="stylesheet" href="../static/sigin.css"/>
+
+    <!--GSAP & ScrollToPlugin-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"
+            integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ=="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollToPlugin.min.js"
+            integrity="sha512-nTHzMQK7lwWt8nL4KF6DhwLHluv6dVq/hNnj2PBN0xMl2KaMm1PM02csx57mmToPAodHmPsipoERRNn4pG7f+Q=="
+            crossorigin="anonymous"></script>
+
+    <title>스파벅스</title>
+
+    <script defer src="../static/js/main.js"></script>
+    <script defer src="../static/js/login.js"></script>
+    <script defer src="../static/js/logout.js"></script>
+    <script defer src="../static/js/membership.js"></script>
+    <script defer src="../static/js/order.js"></script>
+
 </head>
 <body>
-$END$
+<header>
+    <div class="inner">
+        <a href="/maintain_login" class="logo">
+            <img onclick="request_signUp()" class="logo_img" src="../static/images/main_pages/logo_1.png" alt="SPABUCKS"/>
+        </a>
+        <ul class="main-menu">
+            <li class="item">
+                <div class="item__name" id="order" onclick="window.location.href = '/order';">주문하기</div>
+            </li>
+            <li class="item">
+                <div class="item__name" id="my_profile" onclick="my_history()">내 주문내역</div>
+            </li>
+            <li class="item">
+                <div onclick="sign_out()" class="item__name" id="log_out">로그아웃</div>
+            </li>
+        </ul>
+    </div>
+</header>
+
+<!--VISUAL-->
+<section class="visual">
+    <div class="inner">
+        <div class="title fade-in">
+            <img src="../static/images/main_pages/og_image.png" alt="SPARTA TOGETHER"/>
+        </div>
+        <div class="fade-in">
+            <img src="../static/images/main_pages/purplesourblended.png" alt="BLENDED" class="cup1 image"/>
+        </div>
+        <div class="fade-in">
+            <img src="../static/images/main_pages/strawberryacailemonade.png" alt="REFRESHING" class="cup2 image"/>
+        </div>
+    </div>
+
+    <div class="signin" id="sign-popup">
+        <div class="signin__card">
+            <button type="button" class="close-button top-right" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <h2>
+                <strong>Welcome!</strong> 스파벅스에 오신 것을 환영합니다.
+            </h2>
+            <div class="login-input-box">
+                <input id="login-id" placeholder="아이디를 입력하세요."/>
+                <input id="login-pw" type="password" placeholder="비밀번호를 입력하세요."/>
+                <button onclick="sign_in()" type="button" class="btn btn-danger">로그인</button>
+            </div>
+            <p id="help-id-login" class="help is-hidden">
+                * 비밀번호를 타 사이트와 같이 사용할 경우 도용 위험이 있으니,<br/>
+                정기적으로 비밀번호를 변경하세요!
+            </p>
+        </div>
+    </div>
+
+    <div class="signin" id="membership-popup">
+        <div class="signin__card">
+            <button type="button" class="close-button top-right" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <h2>
+                <strong>회원가입 -</strong> 스파벅스에 오신 것을 환영합니다.
+            </h2>
+            <div id="id_input_box" class="login-input-box">
+                <div class="check-input">
+                    <input id="input-userId" type="text" placeholder="아이디를 입력하세요."/>
+                    <button class="id-check-button" onclick="check_id()" type="button">ID 검증</button>
+                </div>
+
+                <p id="help-id">아이디는 2-10자의 영문과 숫자와 일부 특수문자(._-)만 입력 가능합니다.</p>
+                <p id="help-id-login" class="help is-danger"></p>
+
+            </div>
+            <div class="nickname_input_box">
+                <div class="check-input">
+                    <input id="input-nickname" type="text" placeholder="사용할 닉네임을 입력하세요."/>
+                    <button class="name-check-button" onclick="check_nickname()" type="button">중복 확인</button>
+                </div>
+                <p id="help-nickname" class="help is-hidden">중복된 닉네임인지 확인합니다.</p>
+                <p id="help-id-login" class="help is-danger"></p>
+            </div>
+            <div class="pw_inputbox nickname_input_box">
+                <div class="check-input">
+                    <input id="input-pw" type="password" placeholder="비밀번호를 입력하세요."/>
+                    <input id="input-pw2" type="password" placeholder="비밀번호 재입력"/>
+                </div>
+            </div>
+            <p id="help-pw" class="help is-hidden">영문과 숫자 조합의 8-20자의 비밀번호를 설정해주세요.</br>특수문자(!@#$%^&*)도 사용
+                가능합니다.</p>
+            <hr>
+            <button type='button' onclick="sign_up()" class="btn btn-danger membership-button">회원가입</button>
+        </div>
+    </div>
+</section>
+
+<!--FOOTER-->
+<footer>
+    <div class="inner">
+        <div class="btn-group">
+            <a href="https://map.kakao.com/?map_type=TYPE_MAP&target=car&rt=,,509825,1111908&rt1=&rt2=%ED%8C%80%EC%8A%A4%ED%8C%8C%EB%A5%B4%ED%83%80&rtIds=,1429099039"
+               target="_blank" class="btn btn--white">찾아오시는 길</a>
+            <a href="/order" class="btn btn--white">주문하기</a>
+            <a href="/order_list" class="btn btn--white">주문내역</a>
+        </div>
+        <div class="info">
+            <span>사업자번호 123-12-12345</span>
+            <span>(주)스파벅스 코리아 대표이사 A반 1조</span>
+            <span>TEL : 02) 1234-1234 / FAX : 02) 4321-4321</span>
+        </div>
+        <p class="copyright">
+            &copy; <span class="this-year"></span> Spabucks Coffee Company. All
+            Rights Reserved.
+        </p>
+    </div>
+</footer>
+<div id="to-top">
+    <div class="material-icons">arrow_upward</div>
+</div>
+
 </body>
 </html>
