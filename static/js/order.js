@@ -209,16 +209,6 @@ function orderComplete() {
 
 function page_move(orders) {
     let data = JSON.stringify(orders)
-
-    $.ajax({
-        type: "POST",
-        url: "/paypage",
-        data: data,
-        dataType: "json",
-        contentType:'application/json',
-        async: false,
-        success: function (response) {
-        }
-    });
+    $.cookie('orderList', data, {path: '/'});
     location.href = '/pay'
 }
