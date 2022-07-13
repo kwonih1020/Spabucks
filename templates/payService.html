@@ -60,7 +60,7 @@
                 url: '/pay',
                 dataType : "json",
 	            contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ data, all_cost :all_cost }),
+                data: JSON.stringify({ data:data, all_cost :all_cost }),
                 success: function (response) {
                     alert(response['msg'])
                     window.location.href="/order_list"

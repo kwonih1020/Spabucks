@@ -103,7 +103,9 @@ def pay_complete():
     collection_orders= {"place":place['storeName'], 'id':idx, 'userId':1, 'createDate':date, 'totalCost': receive['all_cost']}
     collection_order= list()
     for i in orders:
-        order= {'productName': i['productName'], 'ordersId':idx, 'temp': i['temp'], 'size': i['size'], 'cost': i['cost'], 'count': i['count']}
+        order= {'productName': i['productName'], 'ordersId':idx,  'cost': i['cost'], 'count': i['count']}
+        if i['kind']=='beverage':
+            order.update({'temp': i['temp'], 'size': i['size']})
         collection_order.append(order)
         # db.order.insert_many(data)
     collection_orders['order']=collection_order
