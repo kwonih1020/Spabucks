@@ -200,7 +200,21 @@ function orderComplete() {
         }
       })
     let result = {"place":place, "order":orders}
-    console.log(result)
-    localStorage.setItem("orders",JSON.stringify(result))
-    // location.href = ‘/pay’
+    page_move(result)
+}
+
+function page_move(orders) {
+    let data = JSON.stringify(orders)
+
+    $.ajax({
+        type: "POST",
+        url: "/paypage",
+        data: data,
+        dataType: "json",
+        contentType:'application/json',
+        async: false,
+        success: function (response) {
+        }
+    });
+    location.href = '/pay'
 }
