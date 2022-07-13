@@ -52,7 +52,7 @@ function getPlace() {
                                             <img src=${placeImage} class="img-fluid rounded-start" alt="...">
                                         </div>
                                         <div class="col-md-8">
-                                            <div class="card-body place-info">
+                                            <div class="place-info">
                                                 <h5 class="card-title">${placeName}</h5>
                                                 <p class="card-text">${placeAddress}</p>
                                                 <input class="form-check-input mt-0 menu-checkbox" type="radio" value='${JSON.stringify(element)}' name="placeRadio">
@@ -116,15 +116,17 @@ function getMenu() {
                     }
 
                     option_html =`  <div class="dropdown-group">
-                                      <select class="form-check">
-                                        <option class="" value='${JSON.stringify(element)}' name="${menuName}tempSelector" id="${menuName}ICE" ${tempData['ICE']['activation']}>ICE ${tempData['ICE']['addCost']}</option>
-                                        <option class="" value='${JSON.stringify(element)}' name="${menuName}tempSelector" id="${menuName}HOT" ${tempData['HOT']['activation']}>HOT ${tempData['HOT']['addCost']}</option>
-                                      </select>
-                                      <select class="form-check">
-                                        <option class="" value='${JSON.stringify(element)}' name="${menuName}sizeSelector" id="${menuName}TALL" ${sizeData['TALL']['activation']}>TALL ${sizeData['TALL']['addCost']}</option>
-                                        <option class="" value='${JSON.stringify(element)}' name="${menuName}sizeSelector" id="${menuName}GRANDE" ${sizeData['GRANDE']['activation']}>GRANDE ${sizeData['GRANDE']['addCost']}</option>
-                                        <option class="" value='${JSON.stringify(element)}' name="${menuName}sizeSelector" id="${menuName}VENTI" ${sizeData['VENTI']['activation']}>VENTI ${sizeData['VENTI']['addCost']}</option>
-                                      </select>
+                                          <select class="form-check">
+                                                <option  disabled selected>TEMP</option>
+                                                <option class="" value='${JSON.stringify(element)}' name="${menuName}tempSelector" id="${menuName}ICE" ${tempData['ICE']['activation']}>ICE ${tempData['ICE']['addCost']}</option>
+                                                <option class="" value='${JSON.stringify(element)}' name="${menuName}tempSelector" id="${menuName}HOT" ${tempData['HOT']['activation']}>HOT ${tempData['HOT']['addCost']}</option>
+                                          </select>
+                                          <select class="form-check">
+                                                <option  disabled selected>SIZE</option>
+                                                <option class="" value='${JSON.stringify(element)}' name="${menuName}sizeSelector" id="${menuName}TALL" ${sizeData['TALL']['activation']}>TALL ${sizeData['TALL']['addCost']}</option>
+                                                <option class="" value='${JSON.stringify(element)}' name="${menuName}sizeSelector" id="${menuName}GRANDE" ${sizeData['GRANDE']['activation']}>GRANDE ${sizeData['GRANDE']['addCost']}</option>
+                                                <option class="" value='${JSON.stringify(element)}' name="${menuName}sizeSelector" id="${menuName}VENTI" ${sizeData['VENTI']['activation']}>VENTI ${sizeData['VENTI']['addCost']}</option>
+                                          </select>
                                     </div>`
                 } else {
                     option_html=``
@@ -134,17 +136,19 @@ function getMenu() {
 
                 let temp_html = `<div class="card mb-3"">
                                     <div class="row">
-                                        <input class="form-check-input mt-0 menu-checkbox" type="checkbox" value='${JSON.stringify(element)}' aria-label="Checkbox for following text input" name="menuCheckbox">
                                         <div class="col-md-4 menu-image">
                                             <img src="${menuImage}" class="img-fluid rounded-start" alt="...">
                                         </div>
                                         <div class="col-md-8 menu-card">
                                             <div class="card-body">
                                                 <p class="card-title">${menuName}</p>
+                                                <input class="form-check-input mt-0 menu-checkbox" type="checkbox" value='${JSON.stringify(element)}' aria-label="Checkbox for following text input" name="menuCheckbox">
+                                            </div>
+                                            <div class="card-bottom">
                                                 <p class="card-text">${menuCost}</p>
                                                 ${option_html}
                                                 <input type="number" id="${menuName}" name="count" min="0" max="100" value="0">
-                                            </div>
+                                            </div>     
                                         </div>
                                     </div>
                                 </div>`
