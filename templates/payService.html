@@ -98,7 +98,7 @@
 <ul class="list-group" id="pay-list-ul">
   <li class="list-group-item list-group-item-dark pay-list-head"><div>{{ orders.place.storeName }} 지점</div></li>
     {% for order in orders.order %}
-     <li class="list-group-item pay-list" ><div class="menu-img" style="background-image:url('../static/images/food/{{ order.image }}.jpeg');"></div>
+     <li class="list-group-item pay-list" ><div class="menu-img" style="background-image:url('{{ order.image }}');"></div>
          <div class="pay-order-list">
              <span>{{ order.productName }}   /   {{ order.temp }}   /   {{ order.size }} </span>
              <span> 수량 : {{ order.count }}    금액 : {{ order.cost }}</span>
