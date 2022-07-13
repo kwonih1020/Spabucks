@@ -168,6 +168,10 @@ function orderComplete() {
             place=JSON.parse(this.value)
         }
       })
+    if(place==null){
+        alert("주문하실 지점을 선택하세요")
+    }
+
     let orders = []
     $('input:checkbox[name="menuCheckbox"]').each(function () {
         if(this.checked){
@@ -186,8 +190,14 @@ function orderComplete() {
             }
         }
     })
-    let result = {"place":place, "order":orders}
-    page_move(result)
+    console.log(orders)
+    if(orders.length==0){
+        alert("제품을 1개 이상 선택해 주세요.")
+    }
+    if (orders.length!=0 & place!=null){
+        let result = {"place":place, "order":orders}
+        page_move(result)
+    }
 }
 
 function page_move(orders) {
