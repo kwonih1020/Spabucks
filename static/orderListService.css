@@ -1,0 +1,21 @@
+#orderListService{
+    width:90%;
+    margin:auto;
+    padding: 30px 0;
+}
+table tr th {
+    width:80px;
+}
+table tr th div{
+    width:60px;
+    height: 60px;
+    background-position: center;
+    background-size:cover;
+    border-radius: 30px;
+    color: white;
+    display:flex;
+    text-align: center;
+    align-items: center;
+    font-size: 0.5em;
+    justify-content: center;
+}
