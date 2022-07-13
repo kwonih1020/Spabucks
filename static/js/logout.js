@@ -1,7 +1,5 @@
-$(document).ready(function () {
-
-    $('#log_in').on('click', function () {
-        $('#log_out');
-    });
-
-});
+function sign_out() {
+    $.removeCookie('mytoken', {path: '/'});
+    alert('로그아웃!')
+    window.location.href = "/"
+}
