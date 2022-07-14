@@ -162,8 +162,25 @@
 /*Mobile*/
 @media screen and (max-width: 640px) {
     .signin {
-    max-width: 100%;
-  }
+        max-width: 100%;
+    }
+    .signin__card {
+        max-width: 100%;
+    }
+}
+
+@media only screen and (device-width: 768px) {
+    .signin {
+        max-width: 100%;
+    }
+    .signin__card {
+        max-width: 100%;
+    }
+}
+@media only screen and (max-device-width: 1024px) {
+    .signin {
+        max-width: 100%;
+    }
     .signin__card {
         max-width: 100%;
     }
