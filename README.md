@@ -16,6 +16,6 @@
 
 ## Module
 ```
-- pip install pyjwt, flask, jinja2, dnspython, pymongo, certifi
+- pip install pyjwt flask jinja2 dnspython pymongo certifi
 ```
 ## 
