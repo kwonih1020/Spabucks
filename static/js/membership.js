@@ -146,3 +146,20 @@ function sign_up() {
         }
     });
 }
+
+function request_signUp() {
+    let cookies = document.cookie.split(';')
+    let cookie_list = [];
+    for (let i=0; i<cookies.length; i++) {
+        cookie_list = cookies[i].split('=')
+        if (cookie_list[0].includes("mytoken")) {
+            window.location.href = "/maintain_login"
+        } else {
+            window.location.href = "/"
+        }
+}}
+
+function caution() {
+    alert("💁‍♂회원가입이 필요한 서비스입니다. 가입 후 이용해 주세요.")
+    window.location.reload()
+}

@@ -212,3 +212,7 @@ function page_move(orders) {
     $.cookie('orderList', data, {path: '/'});
     location.href = '/pay'
 }
+
+function my_history() {
+    location.href = '/order_list'
+}
