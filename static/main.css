@@ -187,8 +187,7 @@ footer .copyright {
 
 
 /*Mobile*/
-
-@media screen and (max-width: 640px) {
+@media only screen and (max-device-width: 1024px) {
   header .inner {
     max-width: 100%;
   }
@@ -216,7 +215,7 @@ footer .copyright {
 
   .visual .cup2.image {
     position: absolute;
-    bottom: 7%;
+    bottom: 18%;
     right: 0;
     max-width: 90%;
   }
@@ -273,9 +272,13 @@ footer .copyright {
     bottom: 10px;
   }
 }
-@media only screen and (max-device-width: 1024px) {
+
+@media screen and (max-width: 640px) {
   header .inner {
     max-width: 100%;
+  }
+  header .main-menu .item .item__name {
+    padding: 10px 10px 10px 10px;
   }
 
   .visual .inner {
@@ -301,13 +304,19 @@ footer .copyright {
 
   .visual .cup2.image {
     position: absolute;
-    bottom: 7%;
+    bottom: 5%;
     right: 0;
     max-width: 90%;
   }
   footer .inner {
     width: 100%;
     padding: 40px 10px 60px 10px;
+  }
+  footer .inner .btn-group a {
+    font-size: 11px;
+  }
+  footer .info {
+    display: grid;
   }
   #to-top {
     position: absolute;
