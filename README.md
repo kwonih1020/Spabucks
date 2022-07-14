@@ -15,11 +15,7 @@
 - Python 3.9 
 
 ## Module
-- pip install pyjwt
-- pip install Flask
-- pip install Jinja2
-- pip install dnspython
-- pip install pymongo
-- pip install certifi
-
+```
+- pip install pyjwt, flask, jinja2, dnspython, pymongo, certifi
+```
 ## 
