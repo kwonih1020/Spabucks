@@ -54,6 +54,7 @@
 
     <script defer src="../static/js/main.js"></script>
     <script defer src="../static/js/logout.js"></script>
+
     <script>
         function page_move() {
             let data = {{ data|safe }};
@@ -62,9 +63,9 @@
             $.ajax({
                 type: 'POST',
                 url: '/pay',
-                dataType : "json",
-	            contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ data:data, all_cost :all_cost }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({data: data, all_cost: all_cost}),
                 success: function (response) {
                     alert(response['msg'])
                     window.location.href = "/order_list"
@@ -93,30 +94,32 @@
 
 <!--VISUAL-->
 <section class="visual" style="test-align:center;">
-    <div id="payService">
-        <h2> 결제하기 </h2>
-        <hr>
+    <div class="inner">
+        <div id="payService">
+            <h2> 결제하기 </h2>
+            <hr>
 
-        <ul class="list-group" id="pay-list-ul">
-            <li class="list-group-item list-group-item-dark pay-list-head">
-                <div>{{ orders.place.storeName }} 지점</div>
-            </li>
-            {% for order in orders.order %}
-                <li class="list-group-item pay-list">
-                    <div class="menu-img" style="background-image:url('{{ order.image }}');"></div>
-                    <div class="pay-order-list">
-                        <span>{{ order.productName }}   /   {{ order.temp }}   /   {{ order.size }} </span>
-                        <span> 수량 : {{ order.count }}    금액 : {{ order.cost }}</span>
-                    </div>
+            <ul class="list-group" id="pay-list-ul">
+                <li class="list-group-item list-group-item-dark pay-list-head">
+                    <div>{{ orders.place.storeName }} 지점</div>
                 </li>
-            {% endfor %}
-        </ul>
-        <hr>
-        <div id="all-pay-cost">
-            <span> 총 결제 금액  </span> <span id="all-cost">{{ all_cost }}</span><span> 원</span>
-        </div>
-        <div id="payment">
-            <button type="button" class="btn complete_button" onclick="page_move()">결제하기</button>
+                {% for order in orders.order %}
+                    <li class="list-group-item pay-list">
+                        <div class="menu-img" style="background-image:url('{{ order.image }}');"></div>
+                        <div class="pay-order-list">
+                            <span>{{ order.productName }}   /   {{ order.temp }}   /   {{ order.size }} </span>
+                            <span> 수량 : {{ order.count }}    금액 : {{ order.cost }}</span>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <hr>
+            <div id="all-pay-cost">
+                <span> 총 결제 금액  </span> <span id="all-cost">{{ all_cost }}</span><span> 원</span>
+            </div>
+            <div id="payment">
+                <button type="button" class="btn complete_button" onclick="page_move()">결제하기</button>
+            </div>
         </div>
     </div>
 </section>
